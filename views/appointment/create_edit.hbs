@@ -1,0 +1,183 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header no-border">
+                <h3 class="card-title">Create new Appointment</h3>
+                <div class="d-flex justify-content-between">
+                </div>
+            </div>
+            <form action="{{#if isEdit}}/appointment/update{{else}}/appointment/store{{/if}}" method="POST" autocomplete="off">
+                <div class="card-body">
+                    <input type="hidden" name="_id" value="{{appointment._id}}">
+                    <div class="row">
+                        <label class="col-md-2">ResourceType</label>
+                        <div class="col-md-4">
+                            <input type="text" placeholder="{{appointment.resourceTypeError}}" {{#if appointment.resourceTypeError}} class="form-control border-danger" {{else}} class="form-control" {{/if}} name="resourceType" class="form-control" value="{{appointment.resourceType}}" />
+                        </div>
+                        <label class="col-md-2">Identifier</label>
+                        <div class="col-md-4">
+                            <input type="text" placeholder="{{appointment.IdentifierError}}" {{#if appointment.IdentifierError}} class="form-control border-danger" {{else}} class="form-control" {{/if}} name="identifier" class="form-control" value="{{appointment.identifier}}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Status</label>
+                        <div class="col-md-4">
+                            <input type="text" name="status" class="form-control" value="{{appointment.status}}" />
+                        </div>
+                        <label class="col-md-2">serviceCategory</label>
+                        <div class="col-md-4">
+                            <input type="text" name="serviceCategory" class="form-control" value="{{appointment.serviceCategory}}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">serviceType</label>
+                        <div class="col-md-4">
+                             <input type="text" placeholder="{{appointment.serviceTypeError}}" {{#if appointment.serviceTypeError}} class="form-control border-danger" {{else}} class="form-control" {{/if}} name="serviceType" class="form-control" value="{{ appointment.serviceType }}" />
+                        </div>
+                        <label class="col-md-2">specialty</label>
+                        <div class="col-md-4">
+                            <input type="textarea" name="specialty" class="form-control" value="{{ appointment.specialty }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">appointmentType</label>
+                        <div class="col-md-4">
+                            <input type="text" name="appointmentType" class="form-control" value="{{ appointment.appointmentType }}" />
+                        </div>
+                        <label class="col-md-2">reason</label>
+                        <div class="col-md-4">
+                            <input type="text" name="reason" class="form-control" value="{{ appointment.reason }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">indication</label>
+                        <div class="col-md-4">
+                            <input type="text" placeholder="{{appointment.indicationError}}" {{#if appointment.indicationError}} class="form-control border-danger" {{else}} class="form-control" {{/if}} name="indication" class="form-control" value="{{ appointment.indication }}" />
+                        </div>
+                        <label class="col-md-2">priority</label>
+                        <div class="col-md-4">
+                            <input type="text" name="priority" class="form-control" value="{{ appointment.priority }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">description</label>
+                        <div class="col-md-4">
+                            <input type="text" name="description" class="form-control" value="{{ appointment.description }}" />
+                        </div>
+                        <label class="col-md-2">supportingInformation</label>
+                        <div class="col-md-4">
+                            <input type="text" name="supportingInformation" class="form-control" value="{{ appointment.supportingInformation }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                          <label class="col-md-2">Appointment: </label>
+             
+                         <div class="col-md-4">
+                        
+                        <label>Start : </label><input type="checkbox" id="start"  name="start"  onclick="click_check(this.id)" value = "false"  />
+                       </div>
+                       <div class="col-md-4">
+                        <label>End : </label><input type="checkbox" id="end"  name="end"  onclick="click_check(this.id)" value = "false"  />
+                       </div>
+                    </div>
+                    <br>
+                    <script>
+                                function click_check(id) {
+                                                if (id == "start") {
+                                                                document.getElementById("end").checked = !document.getElementById("start").checked 
+                                                }
+                                                else {
+                                                                document.getElementById("start").checked = !document.getElementById("end").checked
+                                                }
+                                }
+
+                    </script>
+            
+                                 
+
+
+
+
+
+
+
+
+
+
+                    <div class="row">
+                        <label class="col-md-2">minutesDuration</label>
+                        <div class="col-md-4">
+                            <input type="text" name="minutesDuration" class="form-control" value="{{ appointment.minutesDuration }}" />
+                        </div>
+                        <label class="col-md-2">slot</label>
+                        <div class="col-md-4">
+                            <input type="text" name="slot" class="form-control" value="{{ appointment.slot }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">created</label>
+                        <div class="col-md-4">
+                            <input type="text" name="created" class="form-control" value="{{ appointment.created }}" />
+                        </div>
+                        <label class="col-md-2">comment</label>
+                        <div class="col-md-4">
+                            <input type="text" name="comment" class="form-control" value="{{ appointment.comment }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">incomingReferral</label>
+                        <div class="col-md-4">
+                            <input type="text" name="incomingReferral" class="form-control" value="{{ appointment.incomingReferral }}" />
+                        </div>
+                        </div>
+                    <div class="row">
+                        <label class="col-md-2">participant</label>
+                    </div>
+                
+                    <br>
+                 
+                    <div class="row">
+                    {{#each appointment.participant}}
+                        <label class="col-md-2">type</label>
+                        <div class="col-md-4">
+                            <input type="text" name="type" class="form-control" value="{{this.type}}" />
+                        </div>
+                        <label class="col-md-2">actor</label>
+                        <div class="col-md-4">
+                            <input type="text" name="actor" class="form-control" value="{{this.actor}}" />
+                        </div>
+                        
+                    <br>
+                    <br>
+                     <label class="col-md-2">required</label>
+                        <div class="col-md-4">
+                            <input type="text" name="required" class="form-control" value="{{this.required}}" />
+                        </div>
+                        <label class="col-md-2">status</label>
+                            <input type="text" name= "status" class="form-control" value="{{this.status}}"/>
+                            </div>
+                            </div>
+                 {{/each}}
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">requestedPeriod</label>
+                        <div class="col-md-4">
+                            <input type="text" name="requestedPeriod" class="form-control" value="{{ appointment.requestedPeriod }}" />
+                        </div>
+                        </div>
+                    <br>
+                <div class="card-footer">
+                    <center><button class="btn btn-default">Submit</button></center>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

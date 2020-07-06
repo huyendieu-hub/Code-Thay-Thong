@@ -1,0 +1,42 @@
+<div class="row">
+   <div class="col-md-12">
+      <div class="card card-primary">
+         <div class="card-header no-border">
+            <h3 class="card-title">Create new FriendList</h3>
+            <div class="d-flex justify-content-between">
+            </div>
+         </div>  
+         <form action="{{#if isEdit}}/friendlist/update{{else}}/friendlist/store{{/if}}" method="POST" autocomplete="off">
+            <div class="card-body">
+               <input type="hidden" name="_id" value="{{friendlist._id}}">
+               <div class="row">
+                  <label class="col-md-2">Id</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{friendlist.NameError}}" {{#if friendlist.NameError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="id" class="form-control" value ="{{friendlist.id}}"/>
+                  </div>
+                  <label class="col-md-2">Period</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{friendlist.NameError}}" {{#if friendlist.NameError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="period" class="form-control" value ="{{friendlist.period}}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Update</label>
+                  <div class="col-md-4">
+                     <input type="text" name="update" class="form-control" value ="{{friendlist.update}}"/>
+                  </div>
+                  <label class="col-md-2">Connectors</label>
+                  <div class="col-md-4">
+                     <input type="text" name="connectors" class="form-control" value ="{{friendlist.connectors}}"/>
+                  </div>
+               </div>
+               
+               <br>
+            </div>
+            <div class="card-footer">
+               <center><button class="btn btn-default">Submit</button></center>
+            </div>       
+         </form>
+      </div>
+   </div>
+</div>

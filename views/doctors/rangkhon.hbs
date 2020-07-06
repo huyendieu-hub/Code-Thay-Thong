@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+          <div class="card-header no-border">
+            <div class="d-flex justify-content-between">
+             
+            </div>
+          </div>
+          <div class="card-body">
+            <form action="http://127.0.0.1:5000/predict" method="POST" enctype='multipart/form-data'>
+                <div class="row">
+                    <!--<div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Diseases</label>
+                            <select name="disease" class="form-control">
+                                <option value="1">Răng khôn mọc lệch</option>
+                                <option value="2">Viêm quoanh cuống</option>
+                                <option value="3">Sinh men bóc toàn</option>
+                                <option value="4">Sâu răng</option>
+                                <option value="5">Viên lợi</option>
+                            </select>
+                        </div>
+                    </div>-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Received Data </label>
+                            <select name="type_data" class="form-control">
+                                <option value="1">Image/Jpg</option>
+                                <option value="2">Json</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="file" name="image">
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </div>
+                </div>
+            </form>
+          </div>
+         </div>
+     </div>
+</div>

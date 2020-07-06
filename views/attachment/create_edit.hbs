@@ -1,0 +1,69 @@
+<div class="row">
+   <div class="col-md-12">
+      <div class="card card-primary">
+         <div class="card-header no-border">
+            <h3 class="card-title">Create new Attachment</h3>
+            <div class="d-flex justify-content-between">
+            </div>
+         </div>  
+         <form action="{{#if isEdit}}/attachment/update{{else}}/attachment/store{{/if}}" method="POST" autocomplete="off">
+            <div class="card-body">
+               <input type="hidden" name="_id" value="{{attachment._id}}">
+               <div class="row">
+                  <label class="col-md-2">ContentType</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{attachment.contentTypeError}}" {{#if attachment.contentTypeError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="contentType" class="form-control" value ="{{attachment.contentType}}"/>
+                  </div>
+                  <label class="col-md-2">Language</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{attachment.language}}" {{#if attachment.languageError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="language" class="form-control" value ="{{attachment.language}}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Data</label>
+                  <div class="col-md-4">
+                     <input type="text" name="data" class="form-control" value ="{{attachment.data}}"/>
+                  </div>
+                  <label class="col-md-2">Url</label>
+                  <div class="col-md-4">
+                     <input type="text" name="url" class="form-control" value ="{{attachment.url}}"/>
+                  </div>
+               </div>
+               <br>
+                <div class="row">
+                  <label class="col-md-2">Size</label>
+                  <div class="col-md-4">
+                     <input type="text" name="size" class="form-control" value ="{{attachment.size}}"/>
+                  </div>
+                  <label class="col-md-2">Hash</label>
+                  <div class="col-md-4">
+                     <input type="text" name="hash" class="form-control" value ="{{attachment.hash}}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Title</label>
+                  <div class="col-md-4">
+                     <input type="text" name="title" class="form-control" value ="{{attachment.title}}"/>
+                  </div>
+                  <label class="col-md-2">Creation</label>
+                  <div class="col-md-4">
+                     <input type="text" name="creation" class="form-control datepicker" value ="{{attachment.creation}}"/>
+                  </div>
+               </div>
+               <br>
+
+              
+            <div class="card-footer">
+               <center><button class="btn btn-default">Submit</button></center>
+            </div>       
+         </form>
+      </div>
+   </div>
+</div>
+<script>
+      $(document).ready(function(){    
+          $('.datepicker').datepicker();
+      });
+</script>

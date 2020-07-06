@@ -1,0 +1,109 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header no-border">
+            <h3 class="card-title">Đăng kí khám bệnh</h3>
+            <div class="d-flex justify-content-between">
+             
+            </div>
+          </div>
+          <form id="form-submit" action="{{#if isEdit}}/patients/update_administration{{else}}/patients/store_administration{{/if}}" method="POST" autocomplete="off">
+             <div class="card-body">    
+                <input type="hidden" name="_id" value="{{patientadmin._id}}">
+                <!--<input type="hidden" name="_id">-->
+                <div class="row">
+                    <label class="col-md-2">Bệnh nhân</label>
+                    <div class="col-md-4">
+                        <select name="patient" class="form-control">
+                            {{#each patients}}
+                                <option value="{{this._id}}">{{this.name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <label class="col-md-2">Khoa đã đến</label>
+                    <div class="col-md-4">
+                        <select name="arrivedDepartment" class="form-control">
+                              <option value="0" {{#iff patientadmin.arrivedDepartment "==" 0}}selected{{/iff}}>Không</option>
+                              <option value="1" {{#iff patientadmin.arrivedDepartment "==" 1}}selected{{/iff}}>Khoa Cấp cứu</option>
+                              <option value="2" {{#iff patientadmin.arrivedDepartment "==" 2}}selected{{/iff}}>Khoa khám bệnh</option>
+                              <option value="3" {{#iff patientadmin.arrivedDepartment "==" 3}}selected{{/iff}}>Khoa điều trị</option>
+                        </select>
+                    </div>
+                    <label class="col-md-2">Thời gian đến</label>
+                    <div class="col-md-4">
+                        <input name="comingTime" class="form-control datepicker" value="{{format_date patientadmin.comingTime 'MM/DD/YYYY'}}"/>
+                        <div class="text-danger">
+                              {{patientadmin.nameError}}
+                        </div>
+                    </div>
+                    
+                </div>
+                <br>
+                <div class="row">
+                    <label class="col-md-2">Đến từ</label>
+                    <div class="col-md-4">
+                           <select name="comingFrom" class="form-control">
+                                <option value="1" {{#iff patientadmin.comingFrom "==" 1}}selected{{/iff}}>Cơ quan y tế</option>
+                                <option value="2" {{#iff patientadmin.comingFrom "==" 2}}selected{{/iff}}>Tự đến</option>
+                                <option value="3" {{#iff patientadmin.comingFrom "==" 3}}selected{{/iff}}>Khác</option>
+                           </select>
+                    </div>
+                    <label class="col-md-2">Số lần đến với lý do tương tự</label>
+                    <div class="col-md-4">
+                        <input type="number" name="rescueNumber" class="form-control" value="{{patientadmin.rescueNumber}}"/>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                     <label class="col-md-2">Thời gian đến khoa</label>
+                     <div class="col-md-4">
+                        <input name="departmentComingTime" class="form-control datepicker" value="{{format_date patientadmin.departmentComingTime 'MM/DD/YYYY'}}"/>
+                     </div>
+                </div>
+                <br>
+                <div class="row" style="display: none;">
+                    <label class="col-md-2">Hoạt động</label>
+                    <div class="col-md-4">
+                              <select id="select_action" name="select_action" class="form-control">
+                                        <option value="1">luu</option>
+                                        <option value="2">luu & enter</option>
+                              </select>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+               <center>
+                    <button id="btn_cancel" type="button" class="btn btn-default">Hủy</button>
+                    &nbsp&nbsp
+                    <button type="button" id="register_diagnose" class="btn btn-primary">{{#if this.isEdit}}Chỉnh sửa{{else}}Đăng ký{{/if}}</button>
+                    &nbsp&nbsp
+                    {{#if this.isEdit}} {{else}}<button type="button" id="register_diagnose_enter" class="btn btn-success">Đăng ký & Nhập thông tin</button>{{/if}}
+               </center>
+            </div>
+          </form>
+        </div>
+     </div>
+</div>
+<script>
+      $(document).ready(function(){    
+           {{#if isEdit}}
+                 $('.datepicker').datepicker();
+           {{else}}
+                   $('.datepicker').datepicker("setDate", new Date());
+           {{/if}}
+      });
+      $('#register_diagnose').click(function(){
+          $('#select_action option[value=1]').attr('selected','selected');
+          $('#form-submit').submit();
+      });
+      $('#register_diagnose_enter').click(function(){
+          $('#select_action option[value=2]').attr('selected','selected');
+          $('#form-submit').submit();
+      });
+      $('#btn_cancel').click(function(){
+            window.location.href = "/patients/list"
+      });
+</script>

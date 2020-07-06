@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+          <div class="card-header no-border">
+            <div class="d-flex justify-content-between">
+              <a href="/appointmentresponse/create" class="btn btn-primary">New appointmentresponse </a>
+              <a href="javascript:void(0);">View Report</a>
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Identifier</th>
+                        <th>Actor</th>
+                        <th>Appointment</th>
+                        <th> Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{#each list}}
+                    <tr>
+                        <!--<td>{{this._id}}</td>-->
+                        <td>{{incremented @index}}</td>
+                        <td>{{this.identifier}}</td>
+                        <td>{{this.actor}}</td>
+                        {{#each this.appointment}}
+                        <td>  {{this.identifier}} </td>
+                        {{/each}}                                              
+                             <td>
+                            <a href="/appointmentresponse/edit/{{this._id}}" class="btn btn-default">Edit</a>
+                            <a href="/appointmentresponse/delete/{{this._id}}" class="btn btn-default">Delete</a>
+                        
+                        </td>
+                    </tr>     
+                {{/each}}
+                    
+                </tbody>
+            </table>
+          </div>
+        </div>
+     </div>
+</div>
+

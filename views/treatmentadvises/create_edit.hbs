@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header no-border">
+            <h3 class="card-title">Thêm thông tin tư vấn</h3>
+            <div class="d-flex justify-content-between">
+             
+            </div>
+          </div>
+          <form action="{{#if isEdit}}/treatmentadvises/update{{else}}/treatmentadvises/store{{/if}}" method="POST" autocomplete="off">
+             <div class="card-body">    
+                <input type="hidden" name="_id" value="{{treatment._id}}">
+                <div class="row">
+                    <label class="col-md-2">Bệnh</label>
+                    <div class="col-md-4">
+                        <select name="disease" class="form-control">
+                                {{#each diseases}}
+                                        <option value="{{this._id}}" {{#if_equal_string this._id ../treatment.disease}} selected {{/if_equal_string}}>{{this.name}}</option>
+                                {{/each}}
+                        </select>
+                        <div class="text-danger">
+                              {{treatment.diseaseError}}
+                        </div>
+                    </div>
+                    <label class="col-md-2">Mã tư vấn</label>
+                    <div class="col-md-4">
+                        <input name="code" class="form-control" value="{{treatment.code}}"/>
+                        <div class="text-danger">
+                              {{treatment.code}}
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <label class="col-md-2">Tư vấn điều trị</label>
+                    <div class="col-md-10">
+                        <textarea name="description" class="form-control">{{treatment.description}}</textarea>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="card-footer">
+               <center><button class="btn btn-default">{{#if isEdit}}Chỉnh sửa{{else}}Thêm{{/if}}</button></center>
+            </div>
+          </form>
+
+        </div>
+     </div>
+</div>

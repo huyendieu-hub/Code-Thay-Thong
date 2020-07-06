@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header no-border">
+                <div class="d-flex justify-content-between">
+                    <a href="/supply_requests/create" class="btn btn-primary">New supply_request</a>
+                    <a href="javascript:void(0);">View Report</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 5%">ID</th>
+                            <th style="width: 80%">category</th>
+                            <th style="width: 15%"></th>  
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each list}}
+                            <tr>
+                                <!--<td>{{ this._id }}</td>-->
+                                <td>{{incremented @index ../pagination.page}}</td>
+                                <td>{{ this.category}}</td>
+                                <td>
+                                    <a href="/supply_requests/{{ this._id }}" class="btn btn-default">Edit</a>
+                                    {{> delete}}
+                                </td>
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </div>
+</div>

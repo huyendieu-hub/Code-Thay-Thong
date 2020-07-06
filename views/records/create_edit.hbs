@@ -1,0 +1,461 @@
+<style>
+.file {
+  visibility: hidden;
+  position: absolute;
+}
+
+./* Style the Image Used to Trigger the Modal */
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  /*max-width: 1024px;*/
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  /*height: 150px;*/
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header no-border">
+            <h3 class="card-title">Thông tin điều trị của bệnh nhân <b style="color: red;"> {{#each patientadmin.patient}} {{this.name}} {{/each}}</b></h3>
+            <div class="d-flex justify-content-between">
+            </div>
+          </div>
+          <form id="form_record" action="{{#if isEdit}}/records/update{{else}}/records/store{{/if}}" method="POST" autocomplete="off" enctype="multipart/form-data">
+             <div class="card-body" style="background-color: #e5e4db">    
+                <input type="hidden" name="patient_id" value="{{#each patientadmin.patient}}{{this._id}}{{/each}}"/>
+                <input type="hidden" name="patientadmin_id" value="{{patientadmin._id}}">
+                <input type="hidden" name="record_id" value="{{record._id}}">
+                <!--<h3>Thông tin chung</h3>-->
+                <div class="row">
+                    <label class="col-md-2">Lý do vào viện</label>
+                    <div class="col-md-10">
+                        <textarea name="comingReason" class="form-control">{{record.comingReason}}</textarea>
+                        <!--<div class="text-danger">
+                              {{record.nameError}}
+                        </div>-->
+                    </div>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                    <label class="col-md-2">Bệnh sử</label>
+                    <div class="col-md-10">
+                        <textarea name="diseaseDescription" class="form-control">{{record.disease.diseaseDescription}}</textarea>
+                    </div>
+                </div>
+                <br>
+             </div>
+             <div class="card-body" style="background-color: #e5e4db">    
+                <div class="row">
+                    <label class="col-md-2">Tiền sử bệnh bản thân</label>
+                    <div class="col-md-10">
+                         <textarea name="diseaseHistory" class="form-control">{{record.disease.diseaseHistory}}</textarea>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <label class="col-md-2">Tiền sử bệnh gia đình</label>
+                    <div class="col-md-10">
+                        <textarea name="familyHistory" class="form-control">{{record.disease.familyHistory}}</textarea>
+                    </div>
+                </div>
+              </div>
+              <div style="background: blue;padding: 10px; color: white;">
+                  <h3>Khám bệnh</h3>
+              </div>
+              <div class="card-body card-primary" style="background-color: #e5e4db">
+                <h3>Toàn thân </h3>
+                <hr>
+                <div class="row">
+                     <!--<label class="col-md-2">Chỉ số sinh tồn</label>
+                     <div class="col-md-2">
+                        <input name="body" class="form-control" value="{{record.body}}"/>
+                     </div>-->
+                     <label class="col-md-1">Mạch</label>
+                     <div class="col-md-2">
+                        <input name="angio" class="form-control" value="{{record.diagnosis.body.angio}}"/>
+                     </div>
+                     <label class="col-md-1">Nhiệt độ</label>
+                     <div class="col-md-2">
+                        <input name="temperature" class="form-control" value="{{record.diagnosis.body.temperature}}"/>
+                     </div>
+                     <label class="col-md-1">Huyết áp</label>
+                     <div class="col-md-2">
+                        <input name="blood_pressure" class="form-control" value="{{record.diagnosis.body.blood_pressure}}"/>
+                     </div>
+                     <label class="col-md-1">Cân nặng</label>
+                     <div class="col-md-2">
+                        <input name="weight" class="form-control" value="{{record.diagnosis.body.weight}}"/>
+                     </div>
+                </div>
+             </div>
+             <div class="card-body card-primary">
+                <h3>Bệnh răng miệng</h3>
+                <br>
+                <div class="row">
+                    <label class="col-md-2">Miêu tả</label>
+                    <div class="col-md-10">
+                         <textarea  class="form-control" style="min-width: 100%" name="description">{{record.diagnosis.dentaldisease.description}}</textarea>
+                    </div>
+                </div>
+             </div>
+             <div class="card-body" style="background-color: #e5e4db">
+                  <!--<div class="row">
+                      <div class="col-md-2">
+                          <label>Bệnh</label>
+                      </div>
+                      <div class="col-md-4">
+                          <select id="select_diseases" name="disease_selected" class="form-control">
+                              {{#each listdiseases}}
+                                  <option value="{{this._id}}" code="{{this.disease}}" link_predict="{{this.link_predict}}" {{#if_equal_string this._id ../record.disease_selected._id}}selected{{/if_equal_string}}>{{this.name}}</option>
+                              {{/each}}
+                          </select>
+                      </div>
+                      <div class="col-md-6" style="display: none;">
+                        <input id="link_predict" name="link_predict" value="" class="form-control" />
+                      </div>
+                  </div>-->
+                  <div class="row">
+                      <div class="col-md-2">
+                           <label >Ảnh tổn thương</label>
+                           <button type="button" onclick="addMoreDivImg()" class="btn btn-default">Thêm ảnh</button>
+                      </div>
+                      <div id="div_img" class="col-md-10">
+                           {{#each images}}
+                                <div class="row" id="div_img_{{this._id}}">
+                                      <input name="img_exist[]" value="{{this._id}}" class="form-control" style="display:none;"/>
+                                      <div class="col-md-5">
+                                            <img alt="{{this.context}}" src="/uploads/{{this.context}}" class="img-thumbnail" onclick="onclickImage(this)">
+                                      </div>
+                                      <div class="col-md-2">
+                                            <select id="select_diseases_{{this._id}}" name="disease_selected[]" class="form-control" onchange="onChangeDiseases(this, '{{this._id}}')">
+                                                {{#each ../listdiseases}}
+                                                    <option value="{{this._id}}" code="{{this.disease}}" link_predict="{{this.link_predict}}" {{#if_equal_string this._id ../this.disease_selected}}selected{{/if_equal_string}}>{{this.name}}</option>
+                                                {{/each}}
+                                            </select>
+                                            <div class="col-md-6" style="display: none;">
+                                              <input id="link_predict_{{this._id}}" name="link_predict[]" value="" class="form-control" />
+                                            </div>
+                                            <br>
+                                            <button type="button" id_image="{{this._id}}" src="./uploads/{{this.context}}" class="btn btn-success" onclick="predictImage(this, '{{this._id}}')">Chẩn đoán</button>
+                                            <br><br>
+                                            <button type="button" onclick="removeDivImgExist('div_img_{{this._id}}')" class="btn btn-danger">Xóa</button>
+                                      </div>
+
+                                      {{#if this.diagnose_machine}}
+                                          {{#if this.diagnose_machine.success}}
+                                            <div class="col-md-5" id="div_diagnose_machine_{{this._id}}">
+                                                  <img alt="{{this.context}}" src="http://112.137.141.15:5000/getimage?image={{this.diagnose_machine.image_predict}}" class="img-thumbnail" onclick="onclickImage(this)">
+                                            </div>
+                                          {{/if}}
+                                      {{/if}} 
+                                 </div>
+                                 <br>
+                           {{/each}}
+                           <div class="row">
+                                <div class="col-sm-5">
+                                    <div>
+                                          <div id="msg"></div>
+                                            <input id="file_1" type="file" name="img[]" class="file" accept="image/*" multiple >
+                                            <div class="input-group my-3">
+                                              <input type="text" class="form-control" disabled placeholder="Upload File" id="filename_1">
+                                              <div class="input-group-append">
+                                                <button onClick="clickbrowseImg(1)" type="button" class="browse btn btn-primary">Browse...</button>
+                                              </div>
+                                            </div>
+                                     </div>
+                                </div>
+                                <div class="col-sm-2" style="margin-top:15px;">
+                                    <select id="select_diseases_1" name="disease_selected[]" class="form-control" onchange="onChangeDiseases(this, 1)">
+                                        {{#each listdiseases}}
+                                            <option value="{{this._id}}" code="{{this.disease}}" link_predict="{{this.link_predict}}" {{#if_equal_string this._id ../record.disease_selected._id}}selected{{/if_equal_string}}>{{this.name}}</option>
+                                        {{/each}}
+                                    </select>
+                                    <br>
+                                    <button id="btn_save_image_1" class="btn btn-primary" disabled>Lưu ảnh</button>
+                                </div>
+                                <div class="col-md-6" style="display: none;">
+                                  <input id="link_predict_1" name="link_predict[]" value="" class="form-control" />
+                                </div>
+                                <div class="col-sm-5" style="margin-top:15px;">
+                                  <img src="https://placehold.it/80x80" id="preview_1" class="img-thumbnail">
+                                </div>
+                           </div>
+                       </div>
+                  </div>
+                  <div class="row" style="padding: 40px;">
+                    <div class="col-md-12">
+                        {{#if treatmentadvises}}
+                          <h1>Lời khuyên nha khoa</h1>
+                        {{else}}
+                              <h1>Lời khuyên nha khoa</h1>
+                              <p>Hiện tại, chưa có nghi ngờ về bệnh răng miệng</p>  
+                        {{/if}}
+                        {{#each treatmentadvises}}
+                          <b>{{this.code}}</b>: {{this.description}}
+                          <br>
+                        {{/each}}
+                    </div>
+                  </div>
+            </div>
+            <div style="background: blue;padding: 10px; color: white;">
+                  <h3>Chẩn đoán</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <label class="col-md-2">Ngày kết luận</label>
+                    <div class="col-md-4">
+                         <input id="conclusionDate" name="conclusionDate" class="form-control datepicker" value="{{format_date  record.conclusionDate 'MM/DD/YYYY'}}"></input>
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <label class="col-md-2">Tiên lượng</label>
+                    <div class="col-md-10">
+                         <textarea name="prediction" class="form-control">{{record.prediction}}</textarea>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <label class="col-md-2">Hướng điều trị</label>
+                    <div class="col-md-10">
+                         <textarea name="treatment" class="form-control" style="min-width: 100%">{{record.treatment}}</textarea>
+                    </div>
+                </div>
+            </div>
+            <select id="method_storage" name="method_storage" style="display:none;">
+                  <option value="1">Luu</option>
+                  <option value="2">Ket luan</option>
+            </select>
+            <div class="card-footer">
+               <center><button id="btn_save" type="button" class="btn btn-default">Lưu</button>&nbsp&nbsp&nbsp<button id="btn_save_end" type="button" class="btn btn-primary">Kết luận</button></center>
+            </div>
+          </form>
+        </div>
+     </div>
+</div>
+<!-- The Modal -->
+<div id="myModal" class="modal" style="z-index: 10000">
+
+  <!-- The Close Button -->
+  <span class="close">&times;</span>
+
+  <!-- Modal Content (The Image) -->
+  <img class="modal-content" id="img01">
+
+  <!-- Modal Caption (Image Text) -->
+  <div id="caption"></div>
+  
+</div>
+<script>
+      var id_img = 2;
+      $(document).ready(function(){    
+          {{#if record.conclusionDate}}
+                  $('#conclusionDate').datepicker();
+          {{else}}
+                  $('#conclusionDate').datepicker("setDate", new Date());
+          {{/if}}
+      });
+      
+      function clickbrowseImg(id){
+          $('#file_'+id).trigger("click");
+          $('#file_'+id).change(function(e) {
+            var fileName = e.target.files[0].name;
+            $("#filename_"+id).val(fileName);
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              // get loaded data and render thumbnail.
+              document.getElementById("preview_"+id).src = e.target.result;
+            };
+            // read the image file as a data URL.
+            reader.readAsDataURL(this.files[0]);
+            $('#btn_save_image_'+id).removeAttr('disabled');
+         });
+
+      }
+      function addMoreDivImg(){
+          var string = '<div class="row" id="divimg_'+id_img+'">'
+          string += '<div class="col-sm-5">'
+          string +=          '<div id="msg"></div>'
+          string +=          '<input id="file_'+id_img+'" type="file" name="img[]" class="file" accept="image/*" multiple >'
+          string +=          '<div class="input-group my-3">'
+          string +=               '<input type="text" class="form-control" disabled placeholder="Upload File" id="filename_'+id_img+'">'
+          string +=             ' <div class="input-group-append">'
+          string +=                  '<button onClick="clickbrowseImg('+id_img+')" type="button" class="browse btn btn-primary">Browse...</button>'
+          string +=              '</div>'
+          string +=          '</div>'
+          string +=          '<button onclick="removeDivImg('+id_img+')" type="button" class="btn btn-default">Xóa</button>'
+          string += '</div>'
+          string += '<div class="col-sm-2" style="margin-top:15px;">'
+          string +=     '<select id="select_diseases_'+id_img+'" name="disease_selected[]" class="form-control" onchange="onChangeDiseases(this, 1)">'
+                            {{#each listdiseases}}
+          string +=            '<option value="{{this._id}}" code="{{this.disease}}" link_predict="{{this.link_predict}}" {{#if_equal_string this._id ../record.disease_selected._id}}selected{{/if_equal_string}}>{{this.name}}</option>'
+                            {{/each}}
+          string +=     '</select>'
+          string += '</div>'
+          string += '<div class="col-md-6" style="display: none;">'
+          string +=     '<input id="link_predict_'+id_img+'" name="link_predict[]" value="" class="form-control" />'
+          string += '</div>'
+          string += '<div class="col-sm-5">'
+          string +=  '<img src="https://placehold.it/80x80" id="preview_'+id_img+'" class="img-thumbnail" onclick="onclickImage(this)">'
+          string += '</div>'
+          string +='</div>'
+          $('#div_img').append(string);
+          id_img++;
+      }
+      function removeDivImgExist(id){
+            $('#'+id).remove();
+      }
+      function removeDivImg(id){
+           $('#divimg_'+id).remove();
+      }
+      $('#btn_save').click(function(){
+            $('#method_storage option[value=1]').attr('selected','selected');
+            $('#form_record').submit();
+                
+      });
+      $('#btn_save_end').click(function(){
+            $('#method_storage option[value=2]').attr('selected','selected');
+            $('#form_record').submit();
+      });
+      /*$(document).on("click", ".browse", function() {
+          var file = $(this).parents().find(".file");
+          file.trigger("click");
+      })
+      $('input[type="file"]').change(function(e) {
+            console.log(e);
+            var fileName = e.target.files[0].name;
+            $("#file").val(fileName);
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+              // get loaded data and render thumbnail.
+              document.getElementById("preview").src = e.target.result;
+            };
+            // read the image file as a data URL.
+            reader.readAsDataURL(this.files[0]);
+      });*/
+      var modal = document.getElementById("myModal");
+      var modalImg = document.getElementById("img01");
+      var captionText = document.getElementById("caption");
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+      function onclickImage(context){
+              modal.style.display = "block";
+              modalImg.src = context.src;
+              captionText.innerHTML = context.alt;
+      }
+      function predictImage(context, id){
+            $('#div_diagnose_machine_'+$(context).attr('id_image')).remove();
+            $(context).prop('disabled', true);
+            var id_image = $(context).attr('id_image');
+            $.post( "/records/predict4Image", { 
+                id_image: $(context).attr('id_image'), 
+                url: $(context).attr('src'),
+                //link_predict: $('#link_predict').val(),
+                link_predict: $('option:selected', $('#select_diseases_'+id)).attr('link_predict'),
+                code: $('option:selected', $('#select_diseases_'+id)).attr('code'),
+                disease_selected: $('#select_diseases_'+id).val()
+              })
+              .done(function( data ) {
+                console.log(data);
+                if(data.success == true){
+                    console.log(data.image_predict);
+                    var string = '<div class="col-md-5">';
+                        string += '<img alt="{{this.context}}" src="http://112.137.141.15:5000/getimage?image='+data.image_predict+'" class="img-thumbnail" onclick="onclickImage(this)">';
+                        string += '</div>';
+                    console.log('#div_img_'+id_image);
+                    $('#div_img_'+id_image).append(string);
+                    $(context).removeAttr('disabled');
+                }
+            });
+      }
+      //
+      $('#link_predict').val($('option:selected', $('#select_diseases')).attr('link_predict'));
+      $('#select_diseases').change(function(){
+          $('#link_predict').val($('option:selected', this).attr('link_predict'));
+          $('#code_predict').val($('option:selected', this).attr('code_predict'));
+      });
+      function onChangeDiseases(selector, id){
+          $('#link_predict_'+id).val($('option:selected', selector).attr('link_predict'));
+          $('#code_predict').val($('option:selected', selector).attr('code_predict'));
+      }
+</script>

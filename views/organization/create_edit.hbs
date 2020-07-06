@@ -1,0 +1,115 @@
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header no-border">
+                <h3 class="card-title">Tạo mới Organization</h3>
+                <div class="d-flex justify-content-between">
+                </div>
+            </div>
+            <form action="{{#if isEdit}}/organization/update{{else}}/organization/store{{/if}}" method="POST" autocomplete="off">
+                <div class="card-body">
+                    <input type="hidden" name="_id" value="{{organization._id}}">
+                    <div class="row">
+                        <!--<label class="col-md-2">ResourceType</label>
+                        <div class="col-md-4">
+                            <input type="text" placeholder="{{organization.resourceTypeError}}" {{#if organization.resourceTypeError}} class="form-control border-danger" {{else}} class="form-control" {{/if}} name="resourceType" class="form-control" value="{{organization.resourceType}}" />
+                        </div>-->
+                        <label class="col-md-2">Identifier</label>
+                        <div class="col-md-4">
+                            <input type="text" placeholder="{{organization.IdentifierError}}" {{#if organization.IdentifierError}} class="form-control border-danger" {{else}} class="form-control" {{/if}} name="identifier" class="form-control" value="{{organization.identifier}}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Name</label>
+                        <div class="col-md-4">
+                            <input type="text" name="name" class="form-control" value="{{ organization.name }}" />
+                        </div>
+                        <label class="col-md-2">Type</label>
+                        <div class="col-md-4">
+                            <input type="text" name="type" class="form-control" value="{{ organization.type }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Alias</label>
+                        <div class="col-md-4">
+                            <input type="text" name="alias" class="form-control" value="{{ organization.alias }}" />
+                        </div>
+                        <label class="col-md-2">Telecom</label>
+                        <div id="show-btn" class="col-md-4">
+                            <input type="text" name="telecom" class="form-control" value="{{ organization.telecom }}" />
+                            
+                           
+<!--<button onclick="myFunction()">Them</button>
+
+<p id="demo"></p>
+
+<script>
+var sdt = [];
+document.getElementById("demo").innerHTML = sdt;
+
+
+function myFunction() {
+
+  sdt.push('<input type="text" name="a" class="form-control">');
+  document.getElementById("demo").innerHTML = sdt;
+}
+</script>-->
+
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Address</label>
+                        <div class="col-md-4">
+                            <input type="text" name="address" class="form-control" value="{{ organization.address }}" />
+                        </div>
+                        <label class="col-md-2">PartOf</label>
+                        <div class="col-md-4">
+                            <input type="text" name="partOf" class="form-control" value="{{ organization.partOf }}" />
+                        </div>
+                    </div>
+                    <br>
+
+                    <h1>Thông tin liên hệ </h1>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Name</label>
+                        <div class="col-md-4">
+                            <input type="text" name="Name" class="form-control" value="{{ organization.contact.name }}" />
+                        </div>
+                        <label class="col-md-2">Telecom </label>
+                        <div class="col-md-4">
+                            <input type="text" name="Telecom" class="form-control" value="{{ organization.contact.telecom }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Address</label>
+                        <div class="col-md-4">
+                            <input type="text" name="Address" class="form-control" value="{{ organization.contact.address }}" />
+                        </div>
+                        <label class="col-md-2">Perpose</label>
+                        <div class="col-md-4">
+                            <input type="text" name="Perpose" class="form-control" value="{{ organization.contact.perpose }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Endpoint</label>
+                        <div class="col-md-4">
+                            <input type="text" name="endpoint" class="form-control" value="{{ organization.endpoint }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="card-footer">
+                        <center><button class="btn btn-default">Submit</button></center>
+                    </div>
+            </form>
+        </div>
+    </div>
+
+</div>

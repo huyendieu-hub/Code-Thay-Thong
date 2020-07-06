@@ -1,0 +1,88 @@
+<div class="row">
+   <div class="col-md-12">
+      <div class="card card-primary">
+         <div class="card-header no-border">
+            <h3 class="card-title">Create new appointment response</h3>
+            <div class="d-flex justify-content-between">
+            </div>
+         </div>  
+         <form action="{{#if isEdit}}/appointmentresponse/update{{else}}/appointmentresponse/store{{/if}}" method="POST" autocomplete="off">
+            <div class="card-body">
+               <input type="hidden" name="_id" value="{{appointmentresponse._id}}">
+               <div class="row">
+                  <label class="col-md-2">ResourceType</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{appointmentresponse.ResourceTypeError}}" {{#if appointmentresponse.ResourceTypeError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="resourceType" class="form-control" value ="{{appointmentresponse.resourceType}}"/>
+                  </div>
+                  <label class="col-md-2">Identifier</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{appointmentresponse.identifier}}" {{#if appointmentresponse.identifier}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="identifier" class="form-control" value ="{{appointmentresponse.identifier}}"/>
+                  </div>
+               </div>
+               <br>
+                   <div class="row">
+                        <label class="col-md-2">Appointment</label>
+                        <div class="col-md-2">
+                            <select name="appointment" class="form-control">  
+                                {{#each listAppointment}}
+                                    <option value="{{this._id}}"
+                                         {{#each ../appointmentresponse.appointment}}
+                                                {{#if_equal_string this._id ../this._id}}
+                                                     selected
+                                                {{/if_equal_string}}
+                                          {{/each}}
+
+                                    >{{this.identifier}}</option>
+                                    
+                                {{/each}}
+
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+               
+               <div class="row">
+                  <label class="col-md-2">Start</label>
+                  <div class="col-md-4">
+                     <input type="text" name="start" class="form-control datepicker" value ="{{appointmentresponse.start}}"/>
+                  </div>
+                  <label class="col-md-2">End</label>
+                  <div class="col-md-4">
+                     <input type="text" name="end" class="form-control datepicker" value ="{{appointmentresponse.end}}"/>
+                  </div>
+               </div>
+               <br>
+              <div class="row">
+                  <label class="col-md-2">ParticipantType</label>
+                  <div class="col-md-4">
+                     <input type="text" name="participantType" class="form-control" value ="{{appointmentresponse.participantType}}"/>
+                  </div>
+                  <label class="col-md-2">Actor</label>
+                  <div class="col-md-4">
+                     <input type="text" name="actor" class="form-control" value ="{{appointmentresponse.actor}}"/>
+                  </div>
+               </div>
+               <br>
+            <div class="row">
+                  <label class="col-md-2">ParticipantStatus</label>
+                  <div class="col-md-4">
+                     <input type="text" name="participantStatus" class="form-control" value ="{{appointmentresponse.participantStatus}}"/>
+                  </div>
+                  <label class="col-md-2">Comment</label>
+                  <div class="col-md-4">
+                     <input type="text" name="comment" class="form-control" value ="{{appointmentresponse.comment}}"/>
+                  </div>
+               </div>
+               <br>
+            <div class="card-footer">
+               <center><button class="btn btn-default">Submit</button></center>
+            </div>       
+         </form>
+      </div>
+   </div>
+</div>
+<script>
+      $(document).ready(function(){    
+          $('.datepicker').datepicker();
+      });
+</script>

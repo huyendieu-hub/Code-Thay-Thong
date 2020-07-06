@@ -1,0 +1,91 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+                <div class="row">
+                    <h3 class="card-title">Danh sách bệnh nhân</h3>
+                    <a href="/patients/create" class="btn btn-primary btn-sm" style="margin-left: 10px;">Thêm mới</a>
+                </div>
+                <div class="card-tools">
+                    <div class="row">
+                        <form class="form-inline ml-3" action="" method="get">
+                                  <div class="input-group input-group-sm" style="width: 150px;">
+                                        <input type="text" name="queryParams" class="form-control float-right" placeholder="Search">
+
+                                        <div class="input-group-append">
+                                          <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                        </div>
+                                  </div>
+                        </form>
+                    </div>
+                </div>
+          </div>
+          <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th style="width:5%">#</th>
+                        <th style="width:20%">Tên</th>
+                        <th style="width:20%">Giới tính</th>
+                        <th class="d-none d-sm-table-cell" style="width:20%">Địa chỉ</th>
+                        <th class="d-none d-sm-table-cell" style="width:15%">Mã y tế</th>
+                        <th class="d-none d-sm-table-cell" style="width:5%">Tuổi</th>
+                        <th style="width:15%"></th>
+                    </tr>
+                </thead>
+                <tbody>      
+                {{#each list}}
+                    <tr>
+                        <td style="display: none;">{{this._id}}</td>
+                        <td><a href="/patients/details/{{this._id}}">{{incremented @index ../pagination.page}}</a></td>
+                        <td><a href="/patients/details/{{this._id}}">{{this.name}}</a></td>
+                        <td>{{#if_equal this.gender 1}} Nam {{/if_equal}}{{#if_equal this.gender 2}} Nữ {{/if_equal}}</td>
+                        <td class="d-none d-sm-table-cell">{{this.address}}</td>
+                        <td class="d-none d-sm-table-cell">{{this.medicalCode}}</td>
+                        <!--<td class="d-none d-sm-table-cell">{{#if this.birthDate}}{{format_date this.birthDate 'DD/MM/YYYY'}}{{/if}}</td>-->
+                        <td>{{this.age}}</td>
+                        <td>
+                            <a href="/patients/details/{{this.id}}" class="btn btn-default"><i class="fa fa-eye"></i></a>
+                            <a href="/patients/edit/{{this._id}}" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal_{{this._id}}">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                                <div class="modal fade" id="myModal_{{this._id}}">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Warning!</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                Do you want to delete ?
+                                            </div>
+
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <a class="btn btn-danger" href="/{{this.resourceType}}/delete/{{this._id}}" class="btn btn-default">Yes</a>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </td>
+                    </tr>   
+                {{/each}}
+                {{#iff list.length '==' 0}}
+                          <tr>
+                              <td colspan="12"><center>Không có bệnh nhân</center></td>
+                          </tr>
+                {{/iff}}
+                </tbody>
+            </table>
+            <hr>
+            <div class="d-flex justify-content-center">{{{paginateHelper pagination}}}</div>
+          </div>
+        </div>
+     </div>
+</div>

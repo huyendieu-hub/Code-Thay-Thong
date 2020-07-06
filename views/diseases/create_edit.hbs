@@ -1,0 +1,56 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header no-border">
+            <h3 class="card-title">Thêm mới bệnh</h3>
+            <div class="d-flex justify-content-between">
+             
+            </div>
+          </div>
+          <form action="{{#if isEdit}}/listdiseases/update{{else}}/listdiseases/store{{/if}}" method="POST" autocomplete="off">
+             <div class="card-body">    
+                <input type="hidden" name="_id" value="{{diseases._id}}">
+                <div class="row">
+                    <label class="col-md-2">Mã</label>
+                    <div class="col-md-4">
+                        <input name="disease" class="form-control" value="{{diseases.disease}}"/>
+                        <!--<div class="text-danger">
+                              {{diseases.diseaseError}}
+                        </div>-->
+                    </div>
+                    <label class="col-md-2">Tên</label>
+                    <div class="col-md-4">
+                        <input name="name" class="form-control" value="{{diseases.name}}"/>
+                        <!--<div class="text-danger">
+                              {{diseases.name}}
+                        </div>-->
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                        <label class="col-md-2">Server học máy</label>
+                        <div class="col-md-4">
+                                <input name="server_machine" class="form-control" value="{{diseases.server_machine}}"/>
+                        </div>
+                        <label class="col-md-2">Link học máy</label>
+                        <div class="col-md-4">
+                                <input name="link_predict" class="form-control" value="{{diseases.link_predict}}"/>
+                        </div>
+                </div>
+                <br>
+                <div class="row">
+                    <label class="col-md-2">Miêu tả</label>
+                    <div class="col-md-10">
+                        <textarea name="description" class="form-control">{{diseases.description}}</textarea>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="card-footer">
+               <center><button class="btn btn-default">{{#if isEdit}}Chỉnh sửa{{else}}Thêm{{/if}}</button></center>
+            </div>
+          </form>
+
+        </div>
+     </div>
+</div>

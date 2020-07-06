@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+          <div class="card-header no-border">
+            <div class="d-flex justify-content-between">
+              <a href="/friendrequest/create" class="btn btn-primary">New Friend Request</a>
+              <a href="javascript:void(0);">View Report</a>
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Identifier</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each list}}
+                    <tr>
+                        <td>{{ this._id }}</td>
+                        <td>{{ this.identifier}}</td>
+                        <td>{{ this.start}}</td>
+                        <td>{{ this.end}}</td>
+                 
+                        <td>
+                            <a href="/friendrequest/edit/{{ this._id }}" class="btn btn-default">Edit</a>
+                            <a href="/friendrequest/delete/{{this._id}}" class="btn btn-default">Delete</a>
+                        </td>
+                    </tr>     
+                    {{/each}}
+                </tbody>
+            </table>
+          </div>
+        </div>
+     </div>
+</div>

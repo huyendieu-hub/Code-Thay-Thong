@@ -1,0 +1,282 @@
+<!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8"> 
+      <span class="brand-text font-weight-light">Hệ thống chăm sóc <br>răng miệng</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">{{ session.userName }}</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="/" class="nav-link {{#if indexSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-dashboard"></i>
+              <p>
+                Bảng điều khiển
+              </p>
+            </a>
+          </li>
+          {{#if_equal session.userType 1}}
+          <li class="nav-item">
+            <a href="/listdiseases/list" class="nav-link {{#if diseasesSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                 Danh sách bệnh
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/treatmentadvises/list" class="nav-link {{#if treatmentSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                 Tư vấn
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/suggestorganization/list" class="nav-link {{#if suggestorganizationSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                 Tư vấn cơ sở khám
+              </p>
+            </a>
+          </li>
+          {{/if_equal}}
+          {{#if_equal session.userType 1}}
+          <li class="nav-item">
+            <a href="/users/list" class="nav-link {{#if userSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                Người dùng
+              </p>
+            </a>
+          </li>
+          {{/if_equal}}
+          <!--<li class="nav-item">
+            <a href="/doctors/list" class="nav-link {{#if doctorSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-edit"></i>
+              <p>
+                Bác sĩ
+              </p>
+            </a>
+          </li>-->
+          <li class="nav-item">
+            <a href="/patients/list" class="nav-link {{#if patientSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-table"></i>
+              <p>
+                Bệnh nhân
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/patients/patientadministration" class="nav-link {{#if patientRegisterSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                Đăng ký khám bệnh 
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/patients/listpatientadmin" class="nav-link {{#if patientListRegisterSlideBarActive}} active {{/if}} ">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                DS bệnh nhân đăng ký
+              </p>
+            </a>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="/doctors/diagnostic/form" class="nav-link">
+              <i class="nav-icon fa fa-plus-square-o"></i>
+              <p>
+                Hỗ trợ chẩn đoán
+                <!--<i class="fa fa-angle-left right"></i>-->
+              </p>
+            </a>
+            <!--<ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="/doctors/diagnostic/rk" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Răng khôn mọc lệch</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/doctors/diagnostic/vqc" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Viêm quanh cuống</p> 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/doctors/diagnostic/smbt" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Sinh men bóc toàn</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/doctors/diagnostic/sr" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Sâu răng</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/doctors/diagnostic/vl" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Viêm lợi</p>
+                </a>
+              </li>
+            </ul>-->
+          </li>
+          <li class="nav-item">
+            <a href="/conference/" class="nav-link">
+              <i class="nav-icon fa fa-table"></i>
+              <p>
+                Hộp thoại
+              </p>
+            </a>
+          </li>
+          <!--userType-->
+          {{#iff session.userType '<' 2}}
+          <li class="nav-item">
+            <a href="/locations/list" class="nav-link {{#if locationSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                Location
+              </p>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a href="/supply_requests/list" class="nav-link {{#if supply_requestSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                Supply_request
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/healthcareservice/list" class="nav-link {{#if healthcareserviceSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                Healthcareservice
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/organization/list" class="nav-link {{#if organizationSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                Organization
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/address/list" class="nav-link {{#if addressSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                address
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/activitydefinition/list" class="nav-link {{#if activitydefinitionSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                activitydefinition
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/connectorrequest/list" class="nav-link {{#if connectorrequestSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                Connectorrequest
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/allergyintolerance/list" class="nav-link {{#if allergyintoleranceSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                allergyintolerance
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/appointment/list" class="nav-link {{#if appointmentSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                Apointment
+              </p>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a href="/appointmentresponse/list" class="nav-link {{#if appointmentresponseSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                Appointmentresponse
+              </p>
+            </a>
+          </li>
+          </li>
+           <li class="nav-item">
+            <a href="/attachment/list" class="nav-link {{#if attachmentSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                Attachment
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/blocklist/list" class="nav-link {{#if blocklistSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                Block list
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/friend/" class="nav-link {{#if friendSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                Friend
+              </p>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a href="/friendlist/" class="nav-link {{#if friendlistSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                Friendlist
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/friendrequest/" class="nav-link {{#if friendrequestSlideBarActive}} active {{/if}}">
+              <i class="nav-icon fa fa-th"></i>
+              <p>
+                Friend request
+              </p>
+            </a>
+          </li>
+          {{/iff}}          
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

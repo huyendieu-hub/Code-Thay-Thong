@@ -1,0 +1,97 @@
+<div class="row">
+   <div class="col-md-12">
+      <div class="card card-primary">
+         <div class="card-header no-border">
+            <h3 class="card-title">Thêm người dùng mới</h3>
+            <div class="d-flex justify-content-between">
+            </div>
+         </div>
+         <form class="login-form" action="{{#if isEdit}}/users/update{{else}}/users/store{{/if}}" method="POST" autocomplete="off" enctype="multipart/form-data">
+             <div class="card-body">
+               <input type="hidden" name="_id" value="{{user._id}}">
+               <div class="row">
+                  <label class="col-md-2">Username</label>
+                  <div class="col-md-4">
+                     <input name="username" placeholder ="{{user.usersError}}" {{#if user.usersError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} value="{{ user.username }}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Password</label>
+                  <div class="col-md-4">
+                     <input type="password" placeholder ="{{user.passwordError}}" {{#if user.passwordError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="password" value="{{ user.password }}" />
+                  </div>
+                  <label class="col-md-2">Re-Password</label>
+                  <div class="col-md-4">
+                     <input type="password" name="repassword" value="{{ user.password }}" class="form-control"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Name</label>
+                  <div class="col-md-4">
+                     <input name="name" placeholder ="{{user.nameError}}" {{#if user.nameError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} value="{{ user.name }}"/>
+                  </div>
+                  <label class="col-md-2">Gender</label>
+                  <div class="col-md-2">
+                     <select name="gender" class="form-control"/>
+                     <option value="1" {{#if_equal user.gender 1}} selected {{/if_equal}}>Male</option>
+                     <option value="2" {{#if_equal user.gender 2}} selected {{/if_equal}}>Felmale</option>
+                     </select>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Email</label>
+                  <div class="col-md-4">
+                     <input type="email" placeholder ="{{user.emailError}}" name="email" {{#if user.emailError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} value="{{ user.email }}"/>
+                  </div>
+                  <label class="col-md-2">Birthday</label>
+                  <div class="col-md-4">
+                     <input name="birthDate" class="form-control datepicker" value="{{ user.birthDate }}"></input>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Mobile</label>
+                  <div class="col-md-4">
+                     <input type="number" name="mobile" class="form-control" value="{{ user.mobile }}"/>
+                  </div>
+                  <label class="col-md-2">City</label>
+                  <div class="col-md-4">
+                     <input name="city" class="form-control" value="{{ user.city }}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Role</label>
+                  <div class="col-md-2">
+                     <select name="type" class="form-control">
+                     <option value="1" {{#if_equal user.type 1}} selected {{/if_equal}}>Administrator</option>
+                     <option value="2" {{#if_equal user.type 2}} selected {{/if_equal}}>Manager</option>
+                     <option value="3" {{#if_equal user.type 3}} selected {{/if_equal}}>Doctor</option>
+                     <option value="4" {{#if_equal user.type 4}} selected {{/if_equal}}>Patient</option>
+                     </select>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Avatar</label>
+                  <div class="col-md-4">
+                     <input type="file" name="photo" class="form-control"/>
+                  </div>
+               </div>
+               <br>
+            </div> 
+            <div class="card-footer">
+               <center><button class="btn btn-default">Submit</button></center>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+<script>
+      $(document).ready(function(){    
+          $('.datepicker').datepicker();
+      });
+</script>

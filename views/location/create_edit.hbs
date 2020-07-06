@@ -1,0 +1,149 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header no-border">
+                <h3 class="card-title">Thêm mới Location</h3>
+                <div class="d-flex justify-content-between">
+                </div>
+            </div>
+            <form action="{{#if isEdit}}/locations/update{{else}}/locations/store{{/if}}" method="POST" autocomplete="off">
+                <div class="card-body">
+                    <input type="hidden" name="_id" value="{{location._id}}">
+                    <div class="row">
+                        <label class="col-md-2">ResourceType</label>
+                        <div class="col-md-4">
+                            <input type="text" placeholder="{{location.resourceTypeError}}" {{#if location.resourceTypeError}} class="form-control border-danger" {{else}} class="form-control" {{/if}} name="resourceType" class="form-control" value="{{location.resourceType}}" />
+                        </div>
+                        <label class="col-md-2">Identifier</label>
+                        <div class="col-md-4">
+                            <input type="text" placeholder="{{location.IdentifierError}}" {{#if location.IdentifierError}} class="form-control border-danger" {{else}} class="form-control" {{/if}} name="identifier" class="form-control" value="{{location.identifier}}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Status</label>
+                        <div class="col-md-4">
+                            <input type="text" name="status" class="form-control" value="{{location.status}}" />
+                        </div>
+                        <label class="col-md-2">OperationalStatus</label>
+                        <div class="col-md-4">
+                            <input type="text" name="operationalStatus" class="form-control" value="{{location.operationalStatus}}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Name</label>
+                        <div class="col-md-4">
+                             <input type="text" placeholder="{{location.NameError}}" {{#if location.NameError}} class="form-control border-danger" {{else}} class="form-control" {{/if}} name="name" class="form-control" value="{{ location.name }}" />
+                        </div>
+                        <label class="col-md-2">Alias</label>
+                        <div class="col-md-4">
+                            <input type="textarea" name="alias" class="form-control" value="{{ location.alias }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Description</label>
+                        <div class="col-md-4">
+                            <input type="text" name="description" class="form-control" value="{{ location.description }}" />
+                        </div>
+                        <label class="col-md-2">Mode</label>
+                        <div class="col-md-4">
+                            <input type="text" name="mode" class="form-control" value="{{ location.mode }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Telecom</label>
+                        <div class="col-md-4">
+                            <input type="text" placeholder="{{location.TelecomError}}" {{#if location.TelecomError}} class="form-control border-danger" {{else}} class="form-control" {{/if}} name="telecom" class="form-control" value="{{ location.telecom }}" />
+                        </div>
+                        <label class="col-md-2">Type</label>
+                        <div class="col-md-4">
+                            <input type="text" name="type" class="form-control" value="{{ location.type }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">PhysicalType</label>
+                        <div class="col-md-4">
+                            <input type="text" name="physicalType" class="form-control" value="{{ location.physicalType }}" />
+                        </div>
+                        <label class="col-md-2">ManagingOrganization</label>
+                        <div class="col-md-4">
+                            <input type="text" name="managingOrganization" class="form-control" value="{{ location.managingOrganization }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">PartOf</label>
+                        <div class="col-md-4">
+                            <input type="text" name="partOf" class="form-control" value="{{ location.partOf }}" />
+                        </div>
+                        <label class="col-md-2">Endpoint</label>
+                        <div class="col-md-4">
+                            <input type="text" name="endpoint" class="form-control" value="{{ location.endpoint }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Position</label>
+                    </div>
+                
+                    <br>
+                 
+                    <div class="row">
+                    {{#each location.position}}
+                        <label class="col-md-2">Longitude</label>
+                        <div class="col-md-4">
+                            <input type="textarea" name="longitude" class="form-control" value="{{this.longitude}}" />
+                        </div>
+                        <label class="col-md-2">Latitude</label>
+                        <div class="col-md-4">
+                            <input type="text" name="latitude" class="form-control" value="{{this.latitude}}" />
+                        </div>
+                        
+                        <br>
+                        <br>
+                        <label class="col-md-2">Altitude</label>
+                                        <div class="col-md-4">
+                                            <input type="text" name="altitude" class="form-control" value="{{this.altitude}}" />
+                                        </div>
+                        </div>
+                    {{/each}}
+                    <br>
+                    <br>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-2">Address</label>
+                        <div class="col-md-2">
+                            <select name="address" class="form-control">  
+                                {{#each listAddress}}
+                                    <option value="{{this._id}}"
+                                         {{#each ../location.address}}
+                                                {{#if_equal_string this._id ../this._id}}
+                                                     selected
+                                                {{/if_equal_string}}
+                                          {{/each}}
+
+                                    >{{this.use}}</option>
+                                    
+                                {{/each}}
+
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="card-footer">
+                    <center><button class="btn btn-default">Submit</button></center>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+      $(document).ready(function(){    
+          $('.datepicker').datepicker();
+      });
+</script>

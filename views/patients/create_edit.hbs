@@ -1,0 +1,153 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header no-border">
+            <h3 class="card-title">Thêm mới bệnh nhân</h3>
+            <div class="d-flex justify-content-between">
+             
+            </div>
+          </div>
+          <form id="form-submit" action="{{#if isEdit}}/patients/update{{else}}/patients/store{{/if}}" method="POST" autocomplete="off" enctype="multipart/form-data">
+             <div class="card-body">    
+                <input type="hidden" name="_id" value="{{patient._id}}">
+                <div class="row">
+                    <label class="col-md-2">Tên</label>
+                    <div class="col-md-4">
+                        <input name="name" class="form-control" value="{{patient.name}}"/>
+                        <div class="text-danger">
+                              {{patient.nameError}}
+                        </div>
+                    </div>
+                    <label class="col-md-2">Giới tính</label>
+                    <div class="col-md-2">
+                        <select name="gender" class="form-control">
+                              <option value="1">Nam</option>
+                              <option value="2">Nữ</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <label class="col-md-2">Ngày sinh</label>
+                    <div class="col-md-4">
+                        <input name="birthDate" class="form-control datepicker" value="{{#if patient.birthDate}}{{format_date patient.birthDate 'MM/DD/YYYY'}} {{/if}}"/>
+                    </div>
+                    <label class="col-md-2">Tuổi</label>
+                    <div class="col-md-2">
+                        <input name="age" class="form-control" value="{{patient.age}}"/>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <label class="col-md-2">Mã y tế</label>
+                    <div class="col-md-4">
+                        <input name="medicalCode" class="form-control" value="{{patient.medicalCode}}"/>
+                    </div>
+                    <div style="display: none;">
+                          <label class="col-md-2">Nơi làm việc</label>
+                          <div class="col-md-4">
+                              <input name="jobAddress" class="form-control" value="{{patient.jobAddress}}"/>
+                          </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <label class="col-md-2">Số điện thoại</label>
+                    <div class="col-md-4">
+                        <input name="mobile" class="form-control" value="{{patient.mobile}}"/>
+                    </div>
+                    <label class="col-md-2">Email</label>
+                    <div class="col-md-4">
+                        <input name="email" class="form-control" value="{{patient.email}}"/>
+                    </div>
+                </div>
+                <br>
+                <!--<div class="row">
+                    <label class="col-md-2">Đã chết (DateTime)</label>
+                    <div class="col-md-4">
+                        <input name="deceasedDateTime" class="form-control datepicker" value="{{#if patient.deceasedDateTim}}{{format_date patient.deceasedDateTime 'MM/DD/YYYY'}} {{/if}}"/>
+                    </div>
+                </div>
+                <br>-->
+                
+                <div class="row">
+                    <label class="col-md-2">Địa chỉ</label>
+                    <div class="col-md-10">
+                        <input name="address" class="form-control" value="{{patient.address}}"/>
+                    </div>
+                </div>
+                <br>
+                <div class="row" style="display: none;">
+                    <label class="col-md-2">action</label>
+                    <div class="col-md-4">
+                              <select id="select_action" name="select_action" class="form-control">
+                                        <option value="1">luu</option>
+                                        <option value="2">luu & enter</option>
+                              </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-md-2">Ảnh bệnh nhân</label>
+                    <div class="col-md-4">
+                        <input type="file" name="photo" class="form-control"  />
+                    </div>
+                    <div style="display:none;">
+                          <label class="col-md-2">Ngôn ngữ</label>
+                          <div class="col-md-3">
+                           <select name="language" class="form-control">
+                           {{#if isEdit}}
+                           {{else}}
+                           <option value="2" {{#if_equal this.language 2}} selected {{/if_equal}}>Việt Nam</option>
+                           <option value="1" {{#if_equal this.language 1}} selected {{/if_equal}}>Anh</option>
+                           <option value="3" {{#if_equal this.language 3}} selected {{/if_equal}}>Nhật</option>
+                           <option value="4" {{#if_equal this.language 4}} selected {{/if_equal}}>Trung quốc</option>
+                           {{/if}}
+                           {{#each patient.communication}}
+                           <option value="2" {{#if_equal this.language 2}} selected {{/if_equal}}>Việt Nam</option>
+                           <option value="1" {{#if_equal this.language 1}} selected {{/if_equal}}>Anh</option>
+                           <option value="3" {{#if_equal this.language 3}} selected {{/if_equal}}>Nhật</option>
+                           <option value="4" {{#if_equal this.language 4}} selected {{/if_equal}}>Trung quốc</option>
+                           {{/each}}
+                           </select>    
+                          </div>
+                     </div>
+                </div>
+                <br>
+            </div>
+            <div class="card-footer">
+               {{#if isEdit}}
+                    <center>
+                        <button id="btn_cancel_edit" type="button" class="btn btn-default">Hủy</button>
+                        <button class="btn btn-success">Chỉnh sửa</button>
+                    </center>
+               {{else}}
+                    <center>
+                          <button id="btn_cancel_edit" type="button" class="btn btn-default">Hủy</button>
+                          <button type="button" id="btn_add" class="btn btn-primary">Thêm</button>&nbsp&nbsp
+                          <button type="button" id="btn_add_register" class="btn btn-success">Thêm & đăng ký</button>
+                    </center>                
+               {{/if}}
+               
+            </div>
+          </form>
+
+        </div>
+     </div>
+</div>
+
+<script>
+      $(document).ready(function(){    
+          $('.datepicker').datepicker();
+      });
+      $('#btn_add').click(function(){
+          $('#select_action option[value=1]').attr('selected','selected');
+          $('#form-submit').submit();
+      });
+      $('#btn_add_register').click(function(){
+          $('#select_action option[value=2]').attr('selected','selected');
+          $('#form-submit').submit();
+      });
+      $('#btn_cancel_edit').click(function(){
+            window.location.href = "/patients/list"
+      });
+</script>

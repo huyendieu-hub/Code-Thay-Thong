@@ -1,0 +1,119 @@
+<div class="row">
+   <div class="col-md-12">
+      <div class="card card-primary">
+         <div class="card-header no-border">
+            <h3 class="card-title">Create new supply_request</h3>
+            <div class="d-flex justify-content-between">
+            </div>
+         </div>  
+         <form action="{{#if isEdit}}/supply_requests/update{{else}}/supply_requests/store{{/if}}" method="POST" autocomplete="off">
+            <div class="card-body">
+               <input type="hidden" name="_id" value="{{supply_request._id}}">
+               <div class="row">
+                  <label class="col-md-2">quantity</label>
+                  <div class="col-md-4">
+                     <input type="text" name="quantity" class="form-control" value ="{{supply_request.orderedItem.quantity}}"/>
+                  </div>
+                  <label class="col-md-2">Identifier</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{supply_request.IdentifierError}}" {{#if supply_request.IdentifierError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="identifier" class="form-control" value ="{{supply_request.identifier}}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Status</label>
+                  <div class="col-md-4">
+                     <input type="text" name="status" class="form-control" value ="{{supply_request.status}}"/>
+                  </div>
+                  <label class="col-md-2">itemCodeableConcept</label>
+                  <div class="col-md-4">
+                     <input type="text" name="itemCodeableConcept" class="form-control" value ="{{supply_request.itemCodeableConcept}}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">itemReference</label>
+                  <div class="col-md-4">
+                     <input type="text" name="itemReference" class="form-control" value="{{ supply_request.itemReference }}"/>
+                  </div>
+                  <label class="col-md-2">agent</label>
+                  <div class="col-md-4">
+                     <input type="textarea" name="agent" class="form-control" value="{{ supply_request.agent }}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">onBehalfOf</label>
+                  <div class="col-md-4">
+                     <input type="text" name="onBehalfOf" class="form-control" value="{{ supply_request.onBehalfOf }}"/>
+                  </div>
+                  <label class="col-md-2">supplier</label>
+                  <div class="col-md-4">
+                     <input type="text" name="supplier" class="form-control" value="{{ supply_request.supplier }}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">reasonCodeableConcept</label>
+                  <div class="col-md-4">
+                     <input type="text"  name="reasonCodeableConcept" class="form-control" value="{{ supply_request.reasonCodeableConcept }}"/>
+                  </div>
+                  <label class="col-md-2">reasonReference</label>
+                  <div class="col-md-4">
+                     <input type="text"  name="reasonReference" class="form-control" value="{{ supply_request.reasonReference }}"/>
+                  </div>
+               </div>
+               <!-- <br> -->
+               <!-- <div class="row"> -->
+                  <!-- <label class="col-md-2">PhysicalType</label> -->
+                  <!-- <div class="col-md-4"> -->
+                     <!-- <input type="text" type="text" name="physicalType" class="form-control" value="{{ supply_request.address }}" /> -->
+                  <!-- </div> -->
+                  <!-- <label class="col-md-2">Managing Organization</label> -->
+                  <!-- <div class="col-md-4"> -->
+                     <!-- <input type="text" name="managingOrganization" class="form-control" value="{{ supply_request.managingOrganization }}" /> -->
+                  <!-- </div> -->
+               <!-- </div> -->
+               <!-- <br> -->
+               <!-- <div class="row"> -->
+                  <!-- <label class="col-md-2">Part Of</label> -->
+                  <!-- <div class="col-md-4"> -->
+                     <!-- <input type="text" name="partOf" class="form-control" value="{{ supply_request.partOf }}" /> -->
+                  <!-- </div> -->
+                  <!-- <label class="col-md-2" >Endpoint</label> -->
+                  <!-- <div class="col-md-4"> -->
+                     <!-- <input type="text" name="endpoint" class="form-control" value="{{ supply_request.endpoint }}" /> -->
+                  <!-- </div> -->
+               <!-- </div> -->
+               <!-- <br> -->
+               <!-- <div class="row"> -->
+                  <!-- <label class="col-md-2">Position</label> -->
+               <!-- </div> -->
+               <!-- <br> -->
+               <!-- <div class="row"> -->
+                  <!-- <label class="col-md-2">Latitude</label> -->
+                  <!-- <div class="col-md-4"> -->
+                     <!-- <input type="text" name="latitude" class="form-control" value="{{ supply_request.position.latitude }}" /> -->
+                  <!-- </div> -->
+                  <!-- <label class="col-md-2">Altitude </label> -->
+                  <!-- <div class="col-md-4"> -->
+                     <!-- <input type="text" name="altitude" class="form-control" value="{{ supply_request.position.altitude }}" /> -->
+                  <!-- </div> -->
+
+               <!-- </div> -->
+               <!-- <br> -->
+               <!-- <div class="row"> -->
+               <!-- <label class="col-md-2">Longitude</label> -->
+                  <!-- <div class="col-md-4"> -->
+                     <!-- <input type="text" name="longitude" class="form-control" value="{{ supply_request.position.longitude }}" /> -->
+                  <!-- </div> -->
+                <!-- </div> -->
+               <!-- <br> -->
+            <!-- </div> -->
+            <div class="card-footer">
+               <center><button class="btn btn-default">Submit</button></center>
+            </div>       
+         </form>
+      </div>
+   </div>
+</div>

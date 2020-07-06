@@ -1,0 +1,282 @@
+<style>
+.file {
+  visibility: hidden;
+  position: absolute;
+}
+
+./* Style the Image Used to Trigger the Modal */
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  /*max-width: 1024px;*/
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+.callout-danger h5{
+    color: #d9534f;
+}
+.callout-primary h5{
+  color: #428bca;
+}
+.callout-success h5{
+  color: #5cb85c;
+}
+.callout-warning h5{
+  color: #f0ad4e;
+}
+.callout-info h5{
+  color: #5bc0de;
+}
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header no-border">
+                
+            </div>
+            <div class="card-body">
+                <h1>Thông tin của bệnh nhân</h1>
+                <div class="card card-primary">
+                  <div class="card-body" style="background: #ECF0F1">   
+                    <div class="row">
+                        <div class="col-md-10">
+                            <b>Tên</b>: {{patient.name}}
+                            <br>
+                            <b>Tuổi</b>: {{patient.age}}
+                            <br>
+                            <b>Ngày sinh</b>:{{#if patient.birthDate}} {{format_date patient.birthDate 'DD/MM/YYYY'}} {{/if}}
+                            <br>
+                            <b>Mã y tế </b>: {{patient.medicalCode}}
+                            <br>
+                            <b>Điện thoại</b>: {{patient.mobile}}
+                            <br>
+                            <b>Email</b>: {{patient.email}}
+                            <br>
+                            <b>Địa chỉ</b>: {{patient.address}}
+                        </div>
+                        <div class="col-md-2">
+                            <img src="/{{patient.photo}}" width="100%" >
+                        </div>                  
+                    </div>
+                    </div>
+                </div>
+                <h1>Lịch sử khám</h1>
+                <br>
+                {{#if record}}
+                    {{#each record}}
+                    <div class="card card-danger">
+                      <div class="card-header no-border">
+                        <h3 class="card-title"><h4">Khám ngày {{format_date this.recordContainer.patientAdminitration.comingTime 'DD/MM/YYYY'}}</h4></h3>
+                        <div class="d-flex justify-content-between">
+                            <a href="/records/create/{{this.recordContainer.patientAdminitration._id}}" class="btn btn-warning btn-sm">Chỉnh sửa</a>
+                        </div>
+                      </div>
+                      <div style="background: blue;padding: 10px; color: white;">
+                          <h3>Thông tin điều trị</h3>
+                      </div>
+                      <div class="card-body">    
+                        <div class="callout callout-success">
+                          <h5>Lý do vào viện</h5>
+
+                          <p>{{this.comingReason}}</p>
+                        </div>
+                        <div class="callout callout-success">
+                          <h5>Bệnh sử</h5>
+
+                          <p>{{this.disease.diseaseDescription}}</p>
+                        </div>
+                        <div class="callout callout-success">
+                          <h5>Tiền sử bản thân</h5>
+
+                          <p>{{this.disease.diseaseHistory}}</p>
+                          <hr>
+                          <h5>Tiền sử gia đình</h5>
+
+                          <p>{{this.disease.familyHistory}}</p>
+                        </div>
+                        <!--<div class="callout callout-success">
+                          <h5>Tiền sử gia đình</h5>
+
+                          <p>{{this.disease.familyHistory}}</p>
+                        </div>
+                        <div class="callout callout-success">
+                          <h5>Tiền sử gia đình</h5>
+
+                          <p>{{this.disease.familyHistory}}</p>
+                        </div>-->
+                    </div>
+                    <div style="background: blue;padding: 10px; color: white;">
+                        <h3>Khám bệnh</h3>
+                    </div>
+                    <div class="card-body">    
+                        <div class="callout callout-success">
+                          <h5>Toàn thân</h5>
+
+                          <p>Mạch: {{this.diagnosis.body.angio}}; Nhiệt độ: {{this.diagnosis.body.temperature}}; Huyết áp: {{this.diagnosis.body.blood_pressure}} ; Cân nặng: {{this.diagnosis.body.weight}}; </p>
+                        </div>
+                        <div class="callout callout-success">
+                          <h5>Bệnh răng miệng</h5>
+
+                          <p>Miêu tả: {{this.diagnosis.dentaldisease.description}}</p>
+                        </div>
+                    </div>
+                    <div style="background: blue;padding: 10px; color: white;">
+                        <h3>Chẩn đoán</h3>
+                    </div>
+                    <div class="card-body">   
+                        
+                        <div class="callout callout-success">
+                          <h5>Ngày kết luận</h5>
+
+                          <p>{{format_date  this.conclusionDate 'DD/MM/YYYY'}}</p>
+                        </div>
+                        <div class="callout callout-success">
+                          <h5>Tiên lượng</h5>
+
+                          <p>{{this.prediction}}</p>
+                        </div>
+                        <div class="callout callout-success">
+                          <h5>Hướng điều trị</h5>
+
+                          <p>{{this.treatment}}</p>
+                        </div>
+                      </div>
+                      
+                      {{#each this.images}}
+                      <div class="row">
+                        <div class="col-md-6">
+                            <img alt="" onclick="onclickImage(this)" src="/uploads/{{this.context}}" class="img-thumbnail">
+                        </div>
+                        {{#if this.diagnose_machine}}
+                               {{#if this.diagnose_machine.success}}
+                                      <div class="col-md-6">
+                                            <img alt="{{this.context}}" src="http://112.137.141.15:5000/getimage?image={{this.diagnose_machine.image_predict}}" class="img-thumbnail" onclick="onclickImage(this)">
+                                      </div>
+                               {{/if}}
+                        {{/if}} 
+                      </div>
+                      {{/each}}
+                      <br>
+                     {{/each}}
+                     <div class="row" style="padding: 40px;">
+                        <div class="col-md-12">
+                            {{#if treatmentadvises}}
+                              <h1>Lời khuyên nha khoa</h1>
+                            {{else}}
+                              <h1>Lời khuyên nha khoa</h1>
+                              <p>Hiện tại, chưa có nghi ngờ về bệnh răng miệng</p>  
+                            {{/if}}
+                            
+                            {{#each treatmentadvises}}
+                              <b>{{this.code}}</b>: {{this.description}}
+                              <br>
+                            {{/each}}
+                        </div>
+                      </div> 
+                {{else}}
+                    Không có lịch sử khám bệnh    
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- The Modal -->
+<div id="myModal" class="modal" style="z-index: 10000">
+
+  <!-- The Close Button -->
+  <span class="close">&times;</span>
+
+  <!-- Modal Content (The Image) -->
+  <img class="modal-content" id="img01">
+
+  <!-- Modal Caption (Image Text) -->
+  <div id="caption"></div>
+</div>
+<script>
+      var modal = document.getElementById("myModal");
+      var modalImg = document.getElementById("img01");
+      var captionText = document.getElementById("caption");
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+
+      function onclickImage(context){
+            modal.style.display = "block";
+            modalImg.src = context.src;
+            captionText.innerHTML = context.alt;
+      }
+</script>

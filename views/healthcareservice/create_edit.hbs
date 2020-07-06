@@ -1,0 +1,181 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header no-border">
+                <h3 class="card-title">Create new Healthcareservice</h3>
+                <div class="d-flex justify-content-between">
+                </div>
+            </div>
+            <form action="{{#if isEdit}}/healthcareservice/update{{else}}/healthcareservice/store{{/if}}" method="POST" autocomplete="off">
+                <div class="card-body">
+                    <input type="hidden" name="_id" value="{{healthcareservice._id}}">
+                    <div class="row">
+                        <label class="col-md-2">Name</label>
+                        <div class="col-md-4">
+                            <input type="text" placeholder="{{healthcareservice.NameError}}" {{#if healthcareservice.NameError}} class="form-control border-danger" {{else}} class="form-control" {{/if}} name="name" class="form-control" value="{{healthcareservice.name}}" />
+                        </div>
+                        <label class="col-md-2">Identifier</label>
+                        <div class="col-md-4">
+                            <input type="text" placeholder="{{healthcareservice.IdentifierError}}" {{#if healthcareservice.IdentifierError}} class="form-control border-danger" {{else}} class="form-control" {{/if}} name="identifier" class="form-control" value="{{healthcareservice.identifier}}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Category</label>
+                        <div class="col-md-4">
+                            <input type="text" name="category" class="form-control" value="{{healthcareservice.category}}" />
+                        </div>
+                        <label class="col-md-2">Type</label>
+                        <div class="col-md-4">
+                            <input type="text" name="type" class="form-control" value="{{healthcareservice.type}}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Specialty</label>
+                        <div class="col-md-4">
+                            <input type="text" name="specialty" class="form-control" value="{{healthcareservice.specialty }}" />
+                        </div>
+                        <label class="col-md-2">Comment</label>
+                        <div class="col-md-4">
+                            <input type="textarea" name="comment" class="form-control" value="{{ healthcareservice.comment }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Extra Details</label>
+                        <div class="col-md-4">
+                            <input type="text" name="extraDetails" class="form-control" value="{{ healthcareservice.extraDetails }}" />
+                        </div>
+                        <label class="col-md-2">Photo</label>
+                        <div class="col-md-4">
+                            <input type="text" name="photo" class="form-control" value="{{ healthcareservice.photo }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Telecom</label>
+                        <div class="col-md-4">
+                            <input type="text" placeholder="{{healthcareservice.TelecomError}}" {{#if healthcareservice.TelecomError}} class="form-control border-danger" {{else}} class="form-control" {{/if}} name="telecom" class="form-control" value="{{ healthcareservice.telecom }}" />
+                        </div>
+                        <label class="col-md-2">Coverage Area</label>
+                        <div class="col-md-4">
+                            <input type="text" name="coverageArea" class="form-control" value="{{ healthcareservice.coverageArea }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Service Provision Code</label>
+                        <div class="col-md-4">
+                            <input type="text" name="serviceProvisionCode" class="form-control" value="{{ healthcareservice.serviceProvisionCode }}" />
+                        </div>
+                        <label class="col-md-2">Eligibility</label>
+                        <div class="col-md-4">
+                            <input type="text" name="eligibility" class="form-control" value="{{ healthcareservice.eligibility }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">EligibilityNote</label>
+                        <div class="col-md-4">
+                            <input type="text" name="eligibilityNote" class="form-control" value="{{ healthcareservice.eligibilityNote }}" />
+                        </div>
+                        <label class="col-md-2">ProgramName</label>
+                        <div class="col-md-4">
+                            <input type="text" name="programName" class="form-control" value="{{ healthcareservice.programName }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Characteristic</label>
+                        <div class="col-md-4">
+                            <input type="text" name="characteristic" class="form-control" value="{{ healthcareservice.characteristic }}" />
+                        </div>
+                        <label class="col-md-2">Referral Method </label>
+                        <div class="col-md-4">
+                            <input type="text" name="referralMethod" class="form-control" value="{{ healthcareservice.referralMethod }}" />
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">AvailableTime</label>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">DaysOfWeek</label>
+                        <div class="col-md-4">
+                            <input type="text" name="daysOfWeek" class="form-control" value="{{ healthcareservice.daysOfWeek }}" />
+                        </div>
+                        <!--                     <label class="col-md-2">allDay</label>
+                    <div class="col-md-4">
+                    <input type="text" name="longitude" class="form-control" value="{{ healthcareservice.position.longitude }}" />
+                    </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                    <label class="col-md-2">availableStartTime</label>
+                    <div class="col-md-4">
+                    <input type="text" name="longitude" class="form-control" value="{{ healthcareservice.position.longitude }}" />
+                    </div>
+                    <label class="col-md-2">availableEndTime</label>
+                    <div class="col-md-4">
+                    <input type="text" name="longitude" class="form-control" value="{{ healthcareservice.position.longitude }}" />
+                    </div> -->
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">notAvailable</label>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Description</label>
+                        <div class="col-md-4">
+                            <input type="textarea" name="description" class="form-control" value="{{healthcareservice.notAvailable.description}}" />
+                        </div>
+                        <label class="col-md-2">During</label>
+                        <div class="col-md-4">
+                            <input type="text" name="during" class="form-control" value="{{healthcareservice.notAvailable.during}}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Availability Exceptions</label>
+                        <div class="col-md-4">
+                            <input type="text" name="availabilityExceptions" class="form-control" value="{{ healthcareservice.availabilityExceptions }}" />
+                        </div>
+                        <label class="col-md-2">Endpoint</label>
+                        <div class="col-md-4">
+                            <input type="text" name="endpoint" class="form-control" value="{{ healthcareservice.endpoint }}" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label class="col-md-2">Location</label>
+                        <div class="col-md-2">
+                            <select name="location" class="form-control">  
+                                {{#each listLocation}}
+                                    <option value="{{this._id}}"
+                                         {{#each ../healthcareservice.location}}
+                                                {{#if_equal_string this._id ../this._id}}
+                                                     selected
+                                                {{/if_equal_string}}
+                                          {{/each}}
+
+                                    >{{this.name}}</option>
+                                    
+                                {{/each}}
+
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+
+                <div class="card-footer">
+                    <center><button class="btn btn-default">Submit</button></center>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

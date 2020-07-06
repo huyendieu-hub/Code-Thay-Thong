@@ -1,0 +1,32 @@
+
+<!DOCTYPE html> 
+<html> 
+<body> 
+
+<div style="text-align:center"> 
+  <button onclick="makeBig()">Big</button>
+  <button onclick="makeSmall()">Small</button>
+  <button onclick="makeNormal()">Normal</button>
+  <br><br>
+  <video id="video1" width="420" controls>
+     <source src="/video/videotest.mp4" type="video/mp4">
+  </video>
+</div> 
+
+<script> 
+var myVideo = document.getElementById("video1"); 
+function makeBig() { 
+    myVideo.width = 1080; 
+} 
+
+function makeSmall() { 
+    myVideo.width = 560; 
+} 
+
+function makeNormal() { 
+    myVideo.width = 720; 
+} 
+</script> 
+
+</body> 
+</html>

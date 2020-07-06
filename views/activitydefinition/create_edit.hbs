@@ -1,0 +1,260 @@
+<div class="row">
+   <div class="col-md-12">
+      <div class="card card-primary">
+         <div class="card-header no-border">
+            <h3 class="card-title">Create new Activitydefinition</h3>
+            <div class="d-flex justify-content-between">
+            </div>
+         </div>  
+         <form action="{{#if isEdit}}/activitydefinition/update{{else}}/activitydefinition/store{{/if}}" method="POST" autocomplete="off">
+            <div class="card-body">
+               <input type="hidden" name="_id" value="{{activitydefinition._id}}">
+               <div class="row">
+                  <label class="col-md-2">ResourceType</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{activitydefinition.ResourceTypeError}}" {{#if activitydefinition.ResourceTypeError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="resourceType" class="form-control" value ="{{activitydefinition.resourceType}}"/>
+                  </div>
+                  <label class="col-md-2">Url</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{activitydefinition.url}}" {{#if activitydefinition.url}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="url" class="form-control" value ="{{activitydefinition.url}}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Identifier</label>
+                  <div class="col-md-4">
+                     <input type="text" name="identifier" class="form-control" value ="{{activitydefinition.identifier}}"/>
+                  </div>
+                  <label class="col-md-2">Version</label>
+                  <div class="col-md-4">
+                     <input type="text" name="version" class="form-control" value ="{{activitydefinition.version}}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Name</label>
+                  <div class="col-md-4">
+                     <input type="text" name="name" class="form-control" value="{{ activitydefinition.name }}"/>
+                  </div>
+                  <label class="col-md-2">Title</label>
+                  <div class="col-md-4">
+                     <input type="textarea" name="title" class="form-control" value="{{ activitydefinition.title }}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Status</label>
+                  <div class="col-md-4">
+                     <input type="text" name="status" class="form-control" value="{{ activitydefinition.status }}"/>
+                  </div>
+                  <label class="col-md-2">Experimental</label>
+                  <div class="col-md-4">
+                     <input type="text" name="experimental" class="form-control" value="{{ activitydefinition.experimental }}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Date</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{activitydefinition.date}}" {{#if activitydefinition.dateError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="date" class="form-control" value="{{ activitydefinition.date }}"/>
+                  </div>
+                  <label class="col-md-2">Publisher</label>
+                  <div class="col-md-4">
+                     <input type="text" name="publisher" class="form-control" value="{{ activitydefinition.publisher }}" />
+                  </div>
+            </div>
+             <br>
+            <div class="row">
+                  <label class="col-md-2">description</label>
+                  <div class="col-md-4">
+                     <input type="text" name="description" class="form-control" value ="{{activitydefinition.description}}"/>
+                  </div>
+                  <label class="col-md-2">Purpose</label>
+                  <div class="col-md-4">
+                     <input type="text" name="purpose" class="form-control" value ="{{activitydefinition.purpose}}"/>
+                  </div>
+               </div>
+               <br>
+                 <div class="row">
+                  <label class="col-md-2">usage</label>
+                  <div class="col-md-4">
+                     <input type="text" name="usage" class="form-control" value ="{{activitydefinition.usage}}"/>
+                  </div>
+                  <label class="col-md-2">approvalDate</label>
+                  <div class="col-md-4">
+                     <input type="text" name="approvalDate" class="form-control" value ="{{activitydefinition.approvalDate}}"/>
+                  </div>
+               </div>
+               <br>
+                 <div class="row">
+                  <label class="col-md-2">lastReviewDate</label>
+                  <div class="col-md-4">
+                     <input type="text" name="lastReviewDate" class="form-control" value ="{{activitydefinition.lastReviewDate}}"/>
+                  </div>
+                  <label class="col-md-2">effectivePeriod</label>
+                  <div class="col-md-4">
+                     <input type="text" name="effectivePeriod" class="form-control" value ="{{activitydefinition.effectivePeriod}}"/>
+                  </div>
+               </div>
+               <br>
+                 <div class="row">
+                  <label class="col-md-2">useContext</label>
+                  <div class="col-md-4">
+                     <input type="text" name="useContext" class="form-control" value ="{{activitydefinition.useContext}}"/>
+                  </div>
+                  <label class="col-md-2">jurisdiction</label>
+                  <div class="col-md-4">
+                     <input type="text" name="jurisdiction" class="form-control" value ="{{activitydefinition.jurisdiction}}"/>
+                  </div>
+               </div>
+               <br>
+                 <div class="row">
+                  <label class="col-md-2">topic</label>
+                  <div class="col-md-4">
+                     <input type="text" name="topic" class="form-control" value ="{{activitydefinition.topic}}"/>
+                  </div>
+                  <label class="col-md-2">contributor</label>
+                  <div class="col-md-4">
+                     <input type="text" name="contributor" class="form-control" value ="{{activitydefinition.contributor}}"/>
+                  </div>
+               </div>
+               <br>
+                 <div class="row">
+                  <label class="col-md-2">contact</label>
+                  <div class="col-md-4">
+                     <input type="text" name="contact" class="form-control" value ="{{activitydefinition.contact}}"/>
+                  </div>
+                  <label class="col-md-2">copyright</label>
+                  <div class="col-md-4">
+                     <input type="text" name="copyright" class="form-control" value ="{{activitydefinition.copyright}}"/>
+                  </div>
+               </div>
+               <br>  <div class="row">
+                  <label class="col-md-2">relatedArtifact</label>
+                  <div class="col-md-4">
+                     <input type="text" name="relatedArtifact" class="form-control" value ="{{activitydefinition.relatedArtifact}}"/>
+                  </div>
+                  <label class="col-md-2">library</label>
+                  <div class="col-md-4">
+                     <input type="text" name="library" class="form-control" value ="{{activitydefinition.library}}"/>
+                  </div>
+               </div>
+               <br>  <div class="row">
+                  <label class="col-md-2">kind</label>
+                  <div class="col-md-4">
+                     <input type="text" name="kind" class="form-control" value ="{{activitydefinition.kind}}"/>
+                  </div>
+                  <label class="col-md-2">code</label>
+                  <div class="col-md-4">
+                     <input type="text" name="code" class="form-control" value ="{{activitydefinition.code}}"/>
+                  </div>
+               </div>
+               <br>  <div class="row">
+                  <label class="col-md-2">timingtiming</label>
+                  <div class="col-md-4">
+                     <input type="text" name="timingtiming" class="form-control" value ="{{activitydefinition.timingtiming}}"/>
+                  </div>
+                  <label class="col-md-2">timingDateTime</label>
+                  <div class="col-md-4">
+                     <input type="text" name="timingDateTime" class="form-control" value ="{{activitydefinition.timingDateTime}}"/>
+                  </div>
+               </div>
+               <br>  <div class="row">
+                  <label class="col-md-2">timingPeriod</label>
+                  <div class="col-md-4">
+                     <input type="text" name="timingPeriod" class="form-control" value ="{{activitydefinition.timingPeriod}}"/>
+                  </div>
+                  <label class="col-md-2">timingRange</label>
+                  <div class="col-md-4">
+                     <input type="text" name="timingRange" class="form-control" value ="{{activitydefinition.timingRange}}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">location</label>
+                  <div class="col-md-4">
+                     <input type="text" name="location" class="form-control" value ="{{activitydefinition.location}}"/>
+                  </div>
+                  </div>
+                  <br>
+                  <div class = "row">
+                  <label class="col-md-2">participant : </label>
+                  </div>
+                  <div class="row">
+                  <label class="col-md-2">type</label>
+                  <div class="col-md-4">
+                     <input type="text" name="type" class="form-control" value ="{{activitydefinition.participant.type}}"/>
+                  </div>
+                  <label class="col-md-2">role</label>
+                  <div class="col-md-4">
+                     <input type="text" name="role" class="form-control" value ="{{activitydefinition.participant.role}}"/>
+                  </div>
+                  </div>
+                  <br>
+                  <br>
+               <div class="row">
+                  <label class="col-md-2">productReference</label>
+                  <div class="col-md-4">
+                     <input type="text" name="productReference" class="form-control" value ="{{activitydefinition.productReference}}"/>
+                  </div>
+                  <label class="col-md-2">productCodeableConcept</label>
+                  <div class="col-md-4">
+                     <input type="text" name="productCodeableConcept" class="form-control" value ="{{activitydefinition.productCodeableConcept}}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">quantity</label>
+                  <div class="col-md-4">
+                     <input type="text" name="quantity" class="form-control" value ="{{activitydefinition.quantity}}"/>
+                  </div>
+                  <label class="col-md-2">dosage</label>
+                  <div class="col-md-4">
+                     <input type="text" name="dosage" class="form-control" value ="{{activitydefinition.dosage}}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">bodySite</label>
+                  <div class="col-md-4">
+                     <input type="text" name="bodySite" class="form-control" value ="{{activitydefinition.bodySite}}"/>
+                  </div>
+                  <label class="col-md-2">transform</label>
+                  <div class="col-md-4">
+                     <input type="text" name="transform" class="form-control" value ="{{activitydefinition.transform}}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">dynamicValue :</label>
+                  </div>
+               <div class="row">
+                  <label class="col-md-2">description</label>
+                  <div class="col-md-4">
+                     <input type="text" name="description" class="form-control" value ="{{activitydefinition.dynamicValue.description}}"/>
+                  </div>
+                  <label class="col-md-2">path</label>
+                  <div class="col-md-4">
+                     <input type="text" name="path" class="form-control" value ="{{activitydefinition.dynamicValue.path}}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">language</label>
+                  <div class="col-md-4">
+                     <input type="text" name="language" class="form-control" value ="{{activitydefinition.dynamicValue.language}}"/>
+                  </div>
+                  <label class="col-md-2">expression</label>
+                  <div class="col-md-4">
+                     <input type="text" name="expression" class="form-control" value ="{{activitydefinition.dynamicValue.expression}}"/>
+                  </div>
+               </div>
+               <br>
+
+            <div class="card-footer">
+               <center><button class="btn btn-default">Submit</button></center>
+            </div>       
+         </form>
+      </div>
+   </div>
+</div>

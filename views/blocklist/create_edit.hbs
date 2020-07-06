@@ -1,0 +1,47 @@
+<div class="row">
+   <div class="col-md-12">
+      <div class="card card-primary">
+         <div class="card-header no-border">
+            <h3 class="card-title">Create new blockList</h3>
+            <div class="d-flex justify-content-between">
+            </div>
+         </div>  
+         <form action="{{#if isEdit}}/blocklist/update{{else}}/blocklist/store{{/if}}" method="POST" autocomplete="off">
+            <div class="card-body">
+               <input type="hidden" name="_id" value="{{blocklist._id}}">
+               <div class="row">
+                  <label class="col-md-2">ResourceType</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{blocklist.ResourceTypeError}}" {{#if blocklist.ResourceTypeError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="resourceType" class="form-control" value ="{{blocklist.resourceType}}"/>
+                  </div>
+                  <label class="col-md-2">identifier</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{blocklist.identifier}}" {{#if blocklist.identifier}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="identifier" class="form-control" value ="{{blocklist.identifier}}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">period</label>
+                  <div class="col-md-4">
+                     <input type="text" name="period" class="form-control" value ="{{blocklist.period}}"/>
+                  </div>
+                  <label class="col-md-2">update</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{blocklist.UpdateError}}" {{#if blocklist.UpdateError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="update" class="form-control" value ="{{blocklist.update}}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">banUsers</label>
+                  <div class="col-md-4">
+                     <input type="text" name="banUsers" class="form-control" value="{{ blocklist.banUsers }}"/>
+                  </div>
+               </div>
+               <br>
+            <div class="card-footer">
+               <center><button class="btn btn-default">Submit</button></center>
+            </div>       
+         </form>
+      </div>
+   </div>
+</div>

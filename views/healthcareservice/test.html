@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+          <div class="card-header no-border">
+            <div class="d-flex justify-content-between">
+              <a href="/healthcareservice/create" class="btn btn-primary">New Healthcare Service</a>
+              <a href="javascript:void(0);">View Report</a>
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Telecom</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{#each list}}
+                    <tr>
+                        <td>{{this._id}}</td>
+                        <td>{{this.name}}</td>
+                        <td>{{this.telecom}}</td>
+                        {{#each this.location}}                       
+                              <td>{{this.name}}</td>
+                        {{/each}}
+                    
+                             <td>
+                            <a href="/location/edit/{{this._id}}" class="btn btn-default">Edit</a>
+                            <a href="/location/delete/{{this._id}}" class="btn btn-default">Delete</a>
+                        
+                        </td>
+                    </tr>     
+                {{/each}}
+                    
+                </tbody>
+            </table>
+          </div>
+        </div>
+     </div>
+</div>

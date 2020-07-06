@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header no-border">
+            <h3 class="card-title">Đăng kí khám bệnh</h3>
+            <div class="d-flex justify-content-between">
+             
+            </div>
+          </div>
+          <form action="{{#if isEdit}}/patients/update{{else}}/patients/store{{/if}}" method="POST" autocomplete="off">
+             <div class="card-body">    
+                <input type="hidden" name="_id" value="{{patient._id}}">
+                <div class="row">
+                    <label class="col-md-2">Name</label>
+                    <div class="col-md-4">
+                        <input name="name" class="form-control" value="{{patient.name}}"/>
+                        <div class="text-danger">
+                              {{patient.nameError}}
+                        </div>
+                    </div>
+                    <label class="col-md-2">Gender</label>
+                    <div class="col-md-4">
+                        <select name="gender" class="form-control">
+                              <option value="1">Male</option>
+                              <option value="2">Female</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <label class="col-md-2">Birth Date</label>
+                    <div class="col-md-4">
+                        <input name="birthDate" class="form-control datepicker" value="{{patient.birthDate}}"/>
+                    </div>
+                    <label class="col-md-2">Medical Code</label>
+                    <div class="col-md-4">
+                        <input name="medicalCode" class="form-control" value="{{patient.medicalCode}}"/>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <label class="col-md-2">Job Address</label>
+                    <div class="col-md-4">
+                        <input name="jobAddress" class="form-control" value="{{patient.jobAddress}}"/>
+                    </div>
+                    <label class="col-md-2">Deceased(DateTime)</label>
+                    <div class="col-md-4">
+                        <input name="deceasedDateTime" class="form-control datepicker" value="{{patient.deceasedDateTime}}"/>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <label class="col-md-2">Photo</label>
+                    <div class="col-md-4">
+                        <input type="file" name="fileupload" class="form-control"/>
+                    </div>
+                    <label class="col-md-2">Communication</label>
+                    <div class="col-md-4">
+                        <input name="communication" class="form-control" value="{{patient.communication}}"/>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <label class="col-md-2">Address</label>
+                    <div class="col-md-10">
+                        <input name="address" class="form-control"/>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div class="card-footer">
+               <center><button class="btn btn-default">Submit</button></center>
+            </div>
+          </form>
+        </div>
+     </div>
+</div>

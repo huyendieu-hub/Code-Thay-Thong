@@ -1,0 +1,168 @@
+<div class="row">
+   <div class="col-md-12">
+      <div class="card card-primary">
+         <div class="card-header no-border">
+            <h3 class="card-title">Create new allergyintolerance</h3>
+            <div class="d-flex justify-content-between">
+            </div>
+         </div>  
+         <form action="{{#if isEdit}}/allergyintolerance/update{{else}}/allergyintolerance/store{{/if}}" method="POST" autocomplete="off">
+            <div class="card-body">
+               <input type="hidden" name="_id" value="{{allergyintolerance._id}}">
+               <div class="row">
+                  <label class="col-md-2">ResourceType</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{allergyintolerance.ResourceTypeError}}" {{#if address.ResourceTypeError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="resourceType" class="form-control" value ="{{allergyintolerance.resourceType}}"/>
+                  </div>
+                  <label class="col-md-2">Identifier</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{allergyintolerance.identifier}}" {{#if allergyintolerance.identifier}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="identifier" class="form-control" value ="{{allergyintolerance.identifier}}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">ClinicalStatus</label>
+                  <div class="col-md-4">
+                     <input type="text" name="clinicalStatus" class="form-control" value ="{{allergyintolerance.clinicalStatus}}"/>
+                  </div>
+                  <label class="col-md-2">VerificationStatus</label>
+                  <div class="col-md-4">
+                     <input type="text" name="verificationStatus" class="form-control" value ="{{allergyintolerance.verificationStatus}}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Type</label>
+                  <div class="col-md-4">
+                     <input type="text" name="type" class="form-control" value="{{ allergyintolerance.type }}"/>
+                  </div>
+                  <label class="col-md-2">Category</label>
+                  <div class="col-md-4">
+                     <input type="textarea" name="category" class="form-control" value="{{ allergyintolerance.category }}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Criticality</label>
+                  <div class="col-md-4">
+                     <input type="text" name="criticality" class="form-control" value="{{ allergyintolerance.criticality }}"/>
+                  </div>
+                  <label class="col-md-2">Code</label>
+                  <div class="col-md-4">
+                     <input type="text" name="code" class="form-control" value="{{ allergyintolerance.code }}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Patient</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{allergyintolerance.patientError}}" {{#if allergyintolerance.patientError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="patient" class="form-control" value="{{ allergyintolerance.patient }}"/>
+                  </div>
+                  <label class="col-md-2">OnsetDateTime</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{allergyintolerance.onsetDateTimeError}}" {{#if allergyintolerance.onsetDateTimeError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="onsetDateTime" class="form-control" value="{{ allergyintolerance.onsetDateTime }}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">OnsetAge</label>
+                  <div class="col-md-4">
+                     <input type="text" name="onsetAge" class="form-control" value="{{ allergyintolerance.onsetAge }}" />
+                  </div>
+                  <label class="col-md-2">OnsetPeriod</label>
+                  <div class="col-md-4">
+                     <input type="text" name="onsetPeriod" class="form-control" value="{{ allergyintolerance.onsetPeriod }}" />
+                  </div>
+                 </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">OnsetRange</label>
+                  <div class="col-md-4">
+                     <input type="text" name="onsetRange" class="form-control" value="{{ allergyintolerance.onsetRange }}" />
+                  </div>
+                  <label class="col-md-2">OnsetString</label>
+                  <div class="col-md-4">
+                     <input type="text" name="onsetString" class="form-control" value="{{ allergyintolerance.onsetString }}" />
+                  </div>
+                 </div>
+                 <br>
+                 <div class="row">
+                  <label class="col-md-2">AssertedDate</label>
+                  <div class="col-md-4">
+                     <input type="text" name="assertedDate" class="form-control" value="{{ allergyintolerance.assertedDate }}" />
+                  </div>
+                  <label class="col-md-2">Recorder</label>
+                  <div class="col-md-4">
+                     <input type="text" name="recorder" class="form-control" value="{{ allergyintolerance.recorder }}" />
+                  </div>
+                 </div>
+                 <br>
+                 <div class="row">
+                  <label class="col-md-2">Asserter</label>
+                  <div class="col-md-4">
+                     <input type="text" name="asserter" class="form-control" value="{{ allergyintolerance.asserter }}" />
+                  </div>
+                  <label class="col-md-2">LastOccurrence</label>
+                  <div class="col-md-4">
+                     <input type="text" name="lastOccurrence" class="form-control" value="{{ allergyintolerance.lastOccurrence }}" />
+                  </div>
+                 </div>
+                 <br>
+                 <div class="row">
+                  <label class="col-md-2">Note</label>
+                  <div class="col-md-4">
+                     <input type="text" name="note" class="form-control" value="{{ allergyintolerance.note }}" />
+                  </div>
+                 </div>
+                 <br>
+                 <div class ="row">
+                 <label class= "col-md-2"> Reaction: </label>
+                 </div>
+                  <div class="row">
+                  <label class="col-md-2">Substance</label>
+                  <div class="col-md-4">
+                     <input type="text" name="substance" class="form-control" value="{{ allergyintolerance.reaction.substance }}" />
+                  </div>
+                  <label class="col-md-2">Manifestation</label>
+                  <div class="col-md-4">
+                     <input type="text" name="manifestation" class="form-control" value="{{ allergyintolerance.reaction.manifestation }}" />
+                  </div>
+                 </div>
+                 <br>
+                  <div class="row">
+                  <label class="col-md-2">Description</label>
+                  <div class="col-md-4">
+                     <input type="text" name="description" class="form-control" value="{{ allergyintolerance.reaction.description }}" />
+                  </div>
+                  <label class="col-md-2">Onset</label>
+                  <div class="col-md-4">
+                     <input type="text" name="onset" class="form-control" value="{{ allergyintolerance.reaction.onset }}" />
+                  </div>
+                 </div>
+                 <br>
+                 <div class="row">
+                  <label class="col-md-2">Severity</label>
+                  <div class="col-md-4">
+                     <input type="text" name="severity" class="form-control" value="{{ allergyintolerance.reaction.severity }}" />
+                  </div>
+                  <label class="col-md-2">ExposureRoute</label>
+                  <div class="col-md-4">
+                     <input type="text" name="exposureRoute" class="form-control" value="{{ allergyintolerance.reaction.exposureRoute }}" />
+                  </div>
+                 </div>
+                 <br>
+                 <div class="row">
+                  <label class="col-md-2">Note</label>
+                  <div class="col-md-4">
+                     <input type="text" name="note" class="form-control" value="{{ allergyintolerance.reaction.note }}" />
+                  </div>
+                 </div>
+                 <br>
+                
+            <div class="card-footer">
+               <center><button class="btn btn-default">Submit</button></center>
+            </div>       
+         </form>
+      </div>
+   </div>
+</div>

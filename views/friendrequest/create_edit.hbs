@@ -1,0 +1,58 @@
+<div class="row">
+   <div class="col-md-12">
+      <div class="card card-primary">
+         <div class="card-header no-border">
+            <h3 class="card-title">Create new FriendRequest</h3>
+            <div class="d-flex justify-content-between">
+            </div>
+         </div>  
+         <form action="{{#if isEdit}}/friendrequest/update{{else}}/friendrequest/store{{/if}}" method="POST" autocomplete="off">
+            <div class="card-body">
+               <input type="hidden" name="_id" value="{{friendrequest._id}}">
+               <div class="row">
+                  <label class="col-md-2">Identifie</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{friendrequest.NameError}}" {{#if friendrequest.NameError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="identifie" class="form-control" value ="{{friendrequest.identifie}}"/>
+                  </div>
+                  <label class="col-md-2">Connectors</label>
+                  <div class="col-md-4">
+                      <input type="text" name="connectors" class="form-control" value ="{{friendrequest.connectors}}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Status</label>
+                  <div class="col-md-4">
+                     <input type="text" name="status" class="form-control" value ="{{friendrequest.status}}"/>
+                  </div>
+                  <label class="col-md-2">Description</label>
+                  <div class="col-md-4">
+                     <input type="text" name="description" class="form-control" value ="{{friendrequest.description}}"/>
+                  </div>
+               </div>
+                <br>
+               <div class="row">
+                  <label class="col-md-2">Start</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{friendrequest.NameError}}" {{#if friendrequest.NameError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="start" class="form-control" value ="{{friendrequest.start}}"/>
+                  </div>
+                  <label class="col-md-2">End</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{friendrequest.NameError}}" {{#if friendrequest.NameError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="end" class="form-control" value ="{{friendrequest.end}}"/>
+                  </div>
+                  </div>
+                  <br>
+                 <div class="row">
+                  <label class="col-md-2">Comment</label>
+                  <div class="col-md-4">
+                     <input type="text" name = "comment" class = "form-control  class="form-control" value ="{{friendrequest.comment}}"/>
+                  </div>
+               
+            </div>
+            <div class="card-footer">
+               <center><button class="btn btn-default">Submit</button></center>
+            </div>       
+         </form>
+      </div>
+   </div>
+</div>

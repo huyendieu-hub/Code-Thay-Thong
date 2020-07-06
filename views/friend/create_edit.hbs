@@ -1,0 +1,42 @@
+<div class="row">
+   <div class="col-md-12">
+      <div class="card card-primary">
+         <div class="card-header no-border">
+            <h3 class="card-title">Create new Friend</h3>
+            <div class="d-flex justify-content-between">
+            </div>
+         </div>  
+         <form action="{{#if isEdit}}/friend/update{{else}}/friend/store{{/if}}" method="POST" autocomplete="off">
+            <div class="card-body">
+               <input type="hidden" name="_id" value="{{friend._id}}">
+               <div class="row">
+                  <label class="col-md-2">Id</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{friend.NameError}}" {{#if friend.NameError}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="id" class="form-control" value ="{{friend.id}}"/>
+                  </div>
+                  <label class="col-md-2">Connector</label>
+                  <div class="col-md-4">
+                     <input type="text" placeholder ="{{friend.Connector}}" {{#if friend.Connector}} class = "form-control border-danger"{{else}} class="form-control"{{/if}} name="connector" class="form-control" value ="{{friend.connector}}"/>
+                  </div>
+               </div>
+               <br>
+               <div class="row">
+                  <label class="col-md-2">Type</label>
+                  <div class="col-md-4">
+                     <input type="text" name="type" class="form-control" value ="{{friend.type}}"/>
+                  </div>
+                  <label class="col-md-2">Status</label>
+                  <div class="col-md-4">
+                     <input type="text" name="status" class="form-control" value ="{{friend.status}}"/>
+                  </div>
+               </div>
+               
+               <br>
+            </div>
+            <div class="card-footer">
+               <center><button class="btn btn-default">Submit</button></center>
+            </div>       
+         </form>
+      </div>
+   </div>
+</div>
